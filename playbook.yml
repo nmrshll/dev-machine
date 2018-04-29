@@ -2,6 +2,8 @@
 
 - hosts: all
   roles:
-    - brew
-    - vscode
+    # - brew
+    # - vscode
+    # - shell
+    - programming-languages
   user: teamwork

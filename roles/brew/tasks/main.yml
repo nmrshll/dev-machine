@@ -18,6 +18,8 @@
     - python
     - python3
     - go
+    - docker-compose
+    - virtualbox
 
 - name: Install Brew Cask packages
   ignore_errors: yes

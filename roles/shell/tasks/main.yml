@@ -1,0 +1,23 @@
+---
+
+- name: ZSH Config
+  lineinfile: dest=~/.zshrc line='{{ item }}'
+  with_items:    
+    - "source ~/.shrc"
+
+- name: Bash Config
+  lineinfile: dest=~/.bash_profile line='{{ item }}'
+  with_items:    
+    - "source ~/.shrc"
+
+- name: common shell config
+  lineinfile: dest=~/.shrc line='{{ item }}'
+  with_items:    
+    # - "[[ ! -f $1 ]] && source $(brew --prefix)/share/antigen/antigen.zsh"
+    # - "antigen bundle zsh-users/zsh-syntax-highlighting"
+    # - "antigen apply"
+    # - "export EDITOR=nano"
+    # - "export PATH=$PATH:~/.composer/vendor/bin"
+    # - 'export PATH="$PATH:\$(yarn global bin)"'
+    # - 'export PATH=$PATH:vendor/bin'
+    # - 'COMPLETION_WAITING_DOTS="true"'
