@@ -1,0 +1,64 @@
+# ---
+
+# - name: ZSH Config
+#   lineinfile: dest=~/.zshrc line='{{ item }}' state=present create=yes
+#   with_items:    
+#     - "[[ -s \"$HOME/.shrc\" ]] && source \"$HOME/.shrc\""
+
+# - name: Bash Config on mac
+#   tags: mac
+#   lineinfile: dest=~/.bash_profile line='{{ item }}' state=present create=yes
+#   with_items:    
+#     - "[[ -s \"$HOME/.shrc\" ]] && source \"$HOME/.shrc\""
+
+# - name: Bash config on ubuntu
+#   tags: ubuntu
+#   lineinfile: dest=~/.bashrc line='{{ item }}' state=present create=yes
+#   with_items:
+#     - "[[ -s \"$HOME/.shrc\" ]] && source \"$HOME/.shrc\""  
+
+# # - name: common shell config
+# #   lineinfile: dest=~/.shrc line='{{ item }}'
+# #   with_items:    
+# #     # - "[[ ! -f $1 ]] && source $(brew --prefix)/share/antigen/antigen.zsh"
+# #     # - "antigen bundle zsh-users/zsh-syntax-highlighting"
+# #     # - "antigen apply"
+# #     # - "export EDITOR=nano"
+# #     - "export PATH=$PATH:~/.composer/vendor/bin"
+# #     # - 'export PATH="$PATH:\$(yarn global bin)"'
+# #     # - 'export PATH=$PATH:vendor/bin'
+# #     # - 'COMPLETION_WAITING_DOTS="true"'
+
+# - name: Create system aliases
+#   lineinfile: dest=~/.shrc line='alias {{ item.key }}=\"{{ item.value }}\"' insertafter='# aliases' state=present create=yes
+#   with_dict: "{{aliases}}"
+#   vars:
+#     aliases:
+#       # gcod: "git checkout development"
+#       # gcos: "git checkout staging"
+#       # gcop: "git checkout production"
+#       # gmd: "git merge development"
+#       # gms: "git merge staging"
+#       # gmp: "git merge production"
+#       # gc: "git commit -m"
+#       # gs: git status
+#       # gpl: git pull
+#       # gp: git push  
+#       # gpt: "git push --tags"
+#       # gph: git push
+#       # update: "git push && gcos && gmd && git push && gcop && gms && git push && gcod"
+#       # git: hub
+#       # wherefiles: "lsof | awk '{ print $2; }' | uniq -c | sort -rn | head"
+#       # ls: exa
+#       copy_ssh: "cat ~/.ssh/id_rsa.pub | pbcopy"
+#       chrome: "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+#       octal: "stat -f '%A %a %N'"
+#       ip: "curl icanhazip.com"
+#       ls: "ls -a"
+#       mkdir: "mkdir -pv"
+#       mkcd: "mkdir $1 && cd $1"
+#       wget: "wget -c"
+#       histg: "history | grep"
+#       echopath: 'echo $PATH | tr -s ":" "\n"'
+#       myip: "curl -sSL http://ipecho.net/plain | xargs echo"
+#       # webpic: "mogrify -resize 690\\> *.png"

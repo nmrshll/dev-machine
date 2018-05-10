@@ -1,0 +1,5 @@
+---
+
+- name: install mac
+  include_role:
+    name: common

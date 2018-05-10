@@ -2,8 +2,13 @@
 
 - hosts: all
   roles:
-    # - brew
+    - common
+    # - { role: mac, tags: [mac] }
+    # - { role: ubuntu, tags: [ubuntu] }
+
+    # - { role: applications, tags: [ 'mac' ] }
     # - vscode
     # - shell
-    - programming-languages
+    # - programming-languages
+    # - settings
   user: teamwork

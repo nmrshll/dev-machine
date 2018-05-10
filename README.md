@@ -18,4 +18,4 @@ Simply run `./main.sh`.
 
 ### One Liner
 
-`git clone git@github.com:nmrshll/dev-machine.git && cd dev-machine && ./main.sh`
+`git clone https://github.com/nmrshll/dev-machine.git && cd dev-machine && ./main.sh`

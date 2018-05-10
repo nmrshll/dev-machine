@@ -1,0 +1,13 @@
+---
+
+- name: say something
+  command: echo something
+
+
+- import_tasks: packages.mac.yml
+  tags: mac
+- import_tasks: packages.ubuntu.yml
+  tags: ubuntu
+
+- import_tasks: go.yml
+- import_tasks: node.yml

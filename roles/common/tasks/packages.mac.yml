@@ -1,4 +1,5 @@
 ---
+
 - name: Update brew daily
   cron: name="brew autoupdate" special_time="daily"
         job="/usr/local/bin/brew update"
@@ -37,3 +38,4 @@
     - etcher
     - android-sdk
     - visual-studio-code
+    - gitkraken

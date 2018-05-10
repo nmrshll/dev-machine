@@ -1,0 +1,24 @@
+---
+
+- name: Install packages from Homebrew
+  tags: mac
+  homebrew: name={{ item }} state=present
+  with_items:
+    - node
+    - npm
+    - yarn
+
+- name: install nvm / node dependencies on ubuntu
+  tags: ubuntu
+  apt: name={{ item }} state=present
+  with_items:
+    - build-essentials
+
+- name: install nvm
+  tags: ubuntu
+  ignore_errors: yes
+  shell: |
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+    export NVM_DIR="$HOME/.cache/nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+    nvm install node

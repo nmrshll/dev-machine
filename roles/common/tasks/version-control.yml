@@ -1,19 +1,16 @@
 ---
 
-- name: Show hidden files in finder by default
-  osx_defaults: domain=com.apple.finder key=AppleShowAllFiles type=bool value=true state=present
+- name: Install packages from Homebrew
+  homebrew: name={{ item }} state=present
+  with_items:
+    - git
+  tags: mac
 
-- name: Reduce keyboard key repeat delay
-  osx_defaults: key=InitialKeyRepeat type=int value=15 state=present
-
-- name: Increase keyboard key repeat speed
-  osx_defaults: key=KeyRepeat type=int value=2
-
-- name: Set cron shell
-  cron: name=SHELL env=yes value=/bin/zsh
-
-- name: Set cron path
-  cron: name=PATH env=yes value=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+- name: Install packages from apt
+  apt: name={{ item }} state=present
+  with_items:
+    - git
+  tags: ubuntu
 
 - name: Create Git configs
   git_config: scope=global name={{ item.name }} value={{ item.value }}
@@ -49,34 +46,3 @@
     # - { name: 'push.followTags', value: true }
     # - { name: 'tag.sort', value: 'version:refname' } 
     # - { name: 'pull.rebase', value: true }
-
-- name: Create system aliases
-  lineinfile: dest=~/.shrc line='alias {{ item.key }}=\"{{ item.value }}\"' insertafter='# aliases'
-  with_dict: "{{aliases}}"
-  vars:
-    aliases:
-      # gcod: "git checkout development"
-      # gcos: "git checkout staging"
-      # gcop: "git checkout production"
-      # gmd: "git merge development"
-      # gms: "git merge staging"
-      # gmp: "git merge production"
-      # gc: "git commit -m"
-      # gs: git status
-      # gpl: git pull
-      # gp: git push  
-      # gpt: "git push --tags"
-      # gph: git push
-      # update: "git push && gcos && gmd && git push && gcop && gms && git push && gcod"
-      docker_clean_images: 'docker rmi \$(docker images -a --filter=dangling=true -q) --force'
-      docker_clean_containers: 'docker rm -v \$(docker ps -a -q -f status=exited)'
-      docker_clean_volumes: 'docker volume rm \$(docker volume ls -qf dangling=true)'
-      docker_clean: docker_clean_images; docker_clean_containers; docker_clean_volumes
-      # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
-      # git: hub
-      # wherefiles: "lsof | awk '{ print $2; }' | uniq -c | sort -rn | head"
-      # ls: exa
-      copy_ssh: "cat ~/.ssh/id_rsa.pub | pbcopy"
-      chrome: "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-      octal: "stat -f '%A %a %N'"
-      ip: "curl icanhazip.com"

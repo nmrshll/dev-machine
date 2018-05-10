@@ -1,0 +1,48 @@
+---
+
+- name: installing go from homebrew
+  homebrew: name={{ item }} state=present
+  with_items:
+    - go
+  tags: mac
+
+# - name: install go on ubuntu
+#   apt: name={{ item }} state=present
+#   with_items:
+#     - go
+#   tags: ubuntu
+
+- name: create /usr/local/go directory
+  tags: ubuntu
+  become: true
+  become_method: sudo
+  file: path=/usr/local/go state=directory
+- name: download and unpack go on ubuntu
+  tags: ubuntu
+  become: true
+  become_method: sudo
+  unarchive:
+    src: https://storage.googleapis.com/golang/go1.10.1.linux-amd64.tar.gz
+    dest: /usr/local
+    remote_src: yes
+
+- name: set go env
+  lineinfile: dest=~/.shrc line='{{ item }}' state=present create=yes
+  with_items:    
+    - "export GOPATH=$HOME/.cache/go:$HOME"
+    - "export PATH=$PATH:/usr/local/go/bin:$HOME/.cache/go/bin:$HOME/bin"
+
+- name: make dir ~/src
+  file: path=~/src state=directory
+
+# - name: source go env
+#   command: pwd && source ~/.shrc
+
+- name: go get some packages
+  ignore_errors: yes
+  shell: |
+    source ~/.shrc
+    which go
+    go get -u golang.org/x/tools/cmd/godoc
+    go get github.com/golang/lint/golint
+    go get -u github.com/golang/dep/cmd/dep

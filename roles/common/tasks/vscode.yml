@@ -1,0 +1,62 @@
+---
+
+- name: Install Brew Cask packages
+  ignore_errors: yes
+  homebrew_cask: name={{ item }} state=present
+  with_items:
+    - visual-studio-code
+  tags: mac
+
+# - name: Check if my_package is installed
+#   command: dpkg-query -W my_package
+#   register: my_package_check_deb
+#   failed_when: my_package_check_deb.rc > 1
+#   changed_when: my_package_check_deb.rc == 1
+# - name: Download my_package
+#   get_url: 
+#     url="{{ my_package_url }}"
+#     dest="/home/{{ ansible_env.USER }}/Downloads/{{ my_package_name }}.deb"
+#   when: vagrant_check_deb.rc == 1
+# - name: Install my_package
+#   apt: deb="/home/{{ ansible_env.USER }}/Downloads/{{ my_package_name }}.deb"
+#   sudo: true
+#   when: vagrant_check_deb.rc == 1
+
+- include: getDpkg.yml
+  tags: ubuntu
+  with_items:
+    - { name: 'vscode', url: 'https://az764295.vo.msecnd.net/stable/3aeede733d9a3098f7b4bdc1f66b63b0f48c1ef9/code_1.22.2-1523551015_amd64.deb' }
+
+# - name: Check if vscode is installed
+#   command: dpkg-query -W vscode
+#   register: vscode_check_deb
+#   failed_when: vscode_check_deb.rc > 1
+#   changed_when: vscode_check_deb.rc == 1
+#   tags: ubuntu
+# - name: Download vscode
+#   get_url: 
+#     url="{{ vscode_url }}"
+#     dest="/home/{{ ansible_env.USER }}/Downloads/{{ vscode_name }}.deb"
+#   when: vscode_check_deb.rc == 1
+#   tags: ubuntu
+# - name: Install vscode
+#   apt: deb="/home/{{ ansible_env.USER }}/Downloads/{{ vscode_name }}.deb"
+#   sudo: true
+#   when: vscode_check_deb.rc == 1
+#   tags: ubuntu
+    
+- name: Install code packages
+  command: code --install-extension {{ item }}
+  ignore_errors: yes
+  # register: vscode_result
+  # changed_when: "'already installed' not in vscode_result.stdout"
+  with_items:
+    - DavidAnson.vscode-markdownlint
+    - PeterJausovec.vscode-docker
+    - dbaeumer.vscode-eslint
+    - eg2.vscode-npm-script
+    - felipecaputo.git-project-manager
+    - msjsdiag.debugger-for-chrome
+    - wayou.vscode-todo-highlight
+    - donjayamanne.python
+    - lukehoban.Go
