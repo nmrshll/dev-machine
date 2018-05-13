@@ -1,6 +1,6 @@
 ---
 
-- name: install go on ubuntu
+- name: other programing languages
   apt: name={{ item }} state=present
   with_items:
     - python-pip

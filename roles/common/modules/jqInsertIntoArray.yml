@@ -1,0 +1,9 @@
+---
+
+- name: insert into JSON array file
+  shell: |
+    # Create a JSON object file if needed
+    if [ ! -s {{ item.filePath }} ]; then echo '[]' > {{ item.filePath }}; fi
+    # Insert value
+    TJQ=$(cat {{ item.filePath }} | jq '{{ item.jqCommand }}')
+    if ! [ -z ${TJQ} ]; then echo ${TJQ} > {{ item.filePath }}; fi

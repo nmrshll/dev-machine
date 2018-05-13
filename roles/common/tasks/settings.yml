@@ -18,6 +18,14 @@
 - name: Set cron path
   cron: name=PATH env=yes value=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
+- name: create karabiner config folder
+  file: path="~/.karabiner.d/configuration" state=directory
+- name: karabiner configuration
+  tags: mac
+  copy:
+    src: karabiner.json
+    dest: ~/.karabiner.d/configuration/karabiner.json
+
 
 
 

@@ -22,7 +22,7 @@
 #   sudo: true
 #   when: vagrant_check_deb.rc == 1
 
-- include: getDpkg.yml
+- include: "{{ role_path }}/modules/getDpkg.yml"
   tags: ubuntu
   with_items:
     - { name: 'vscode', url: 'https://az764295.vo.msecnd.net/stable/3aeede733d9a3098f7b4bdc1f66b63b0f48c1ef9/code_1.22.2-1523551015_amd64.deb' }
@@ -58,5 +58,15 @@
     - felipecaputo.git-project-manager
     - msjsdiag.debugger-for-chrome
     - wayou.vscode-todo-highlight
-    - donjayamanne.python
-    - lukehoban.Go
+    - ms-vscode.go
+    - mubaidr.vuejs-extension-pack
+    - ms-vsliveshare.vsliveshare
+    - xyz.local-history
+
+- name: set keyboard shortcuts on ubuntu
+  include: "{{ role_path }}/modules/jqInsertIntoArray.yml"
+  tags: ubuntu
+  with_items:
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+alt+o", "command": "workbench.action.files.openFile" }]' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+o", "command": "workbench.action.files.openFolder" }]' }
+  

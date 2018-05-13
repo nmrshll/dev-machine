@@ -1,13 +1,18 @@
 ---
 
-- name: say something
-  command: echo something
-
-
 - import_tasks: packages.mac.yml
   tags: mac
 - import_tasks: packages.ubuntu.yml
   tags: ubuntu
 
-- import_tasks: go.yml
-- import_tasks: node.yml
+- import_tasks: programming/go.yml
+- import_tasks: programming/node.yml
+- import_tasks: programming/other.yml
+
+- import_tasks: settings.yml
+- import_tasks: shell.yml
+- import_tasks: shell.ubuntu.yml
+  tags: ubuntu
+- import_tasks: version-control.yml
+- import_tasks: virtualization.yml
+- import_tasks: vscode.yml

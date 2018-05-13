@@ -1,0 +1,18 @@
+---
+
+- name: insert value into JSON object file
+  # shell: "echo {{ item.file }} && TJQ=$(cat $HOME/Library/Application\ Support/Code/User/settings.json | jq '.body.test2=[\"hohohoho\"]') && echo ${TJQ}"
+  shell: |
+    # Create a JSON object file if needed
+    if [ ! -s {{ item.filePath }} ]; then echo '{}' > {{ item.filePath }}; fi
+    # Insert value
+    TJQ=$(cat {{ item.filePath }} | jq '{{ item.jqCommand }}')
+    if ! [ -z ${TJQ} ]; then echo ${TJQ} > {{ item.filePath }}; fi
+
+
+    # echo ${TJQ} > {{ item.filePath }}
+
+# - name: edit json file
+#   shell: |
+#     TJQ=$(cat $HOME/Library/Application\ Support/Code/User/settings.json | jq '.body.test2=["hi"]')
+#     echo ${TJQ} > $HOME/Library/Application\ Support/Code/User/settings.json
