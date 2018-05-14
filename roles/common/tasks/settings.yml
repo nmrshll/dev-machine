@@ -26,6 +26,9 @@
     src: karabiner.json
     dest: ~/.karabiner.d/configuration/karabiner.json
 
+- name: generate ssh key
+  shell: ssh-keygen -t rsa -f .ssh/id_rsa -P ""
+
 
 
 
