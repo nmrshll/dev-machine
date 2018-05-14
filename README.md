@@ -14,7 +14,7 @@ Currently, Ansible and Brew. These will be automatically installed if missing.
 
 Simply run `./main.sh`.
 
-**WARNING: This *will* install and modify packages on your machine. Read through the files in `roles/` so you know what will happen.**
+**WARNING: This *will* install and modify packages on your machine. Read through the files in [`roles/dev-machine/tasks`](https://github.com/nmrshll/dev-machine/tree/master/roles/dev-machine/tasks) so you know what will happen.**
 
 ### One Liner
 
