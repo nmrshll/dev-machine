@@ -22,6 +22,23 @@
       docker_clean_images: 'docker rmi \$(docker images -a --filter=dangling=true -q) --force'
       docker_clean_containers: 'docker rm -v \$(docker ps -a -q -f status=exited)'
       docker_clean_volumes: 'docker volume rm \$(docker volume ls -qf dangling=true)'
-      docker_clean: docker_clean_images; docker_clean_containers; docker_clean_volumes
+      docker_clean: 'docker_clean_images; docker_clean_containers; docker_clean_volumes'
       # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
+
+- name: aliases into shrc
+  blockinfile:
+    dest: ~/.shrc
+    create: yes
+    marker: "# ANSIBLE {mark} docker alias {{item.key}}"
+    block: |
+      alias {{ item.key }}="{{ item.value }}"
+  with_dict: "{{aliases}}"
+  vars:
+    aliases:
+      docker_clean_images: 'docker rmi \$(docker images -a --filter=dangling=true -q) --force'
+      docker_clean_containers: 'docker rm -v \$(docker ps -a -q -f status=exited)'
+      docker_clean_volumes: 'docker volume rm \$(docker volume ls -qf dangling=true)'
+      docker_clean: 'docker_clean_images; docker_clean_containers; docker_clean_volumes'
+      # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
+
       

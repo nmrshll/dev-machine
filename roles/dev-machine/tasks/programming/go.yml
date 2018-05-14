@@ -58,7 +58,6 @@
 #   echo '{"foo":"bar"}' | jq '.body.test2 = ["hi"]' > ~/.somefile
 
 # - name: set vscode gopath
-#   tags: debug
 #   shell: |
 #     TJQ=$(cat $HOME/Library/Application\ Support/Code/User/settings.json | jq '.body.test2=["hi"]')
 #     echo ${TJQ} > $HOME/Library/Application\ Support/Code/User/settings.json

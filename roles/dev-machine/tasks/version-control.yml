@@ -48,7 +48,6 @@
     # - { name: 'pull.rebase', value: true }
 
 - name: copy .gitignore_global
-  tags: debug
   copy:
     src: .gitignore_global
     dest: ~/.gitignore_global

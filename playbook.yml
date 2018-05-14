@@ -2,7 +2,7 @@
 
 - hosts: all
   roles:
-    - common
+    - dev-machine
     # - { role: mac, tags: [mac] }
     # - { role: ubuntu, tags: [ubuntu] }
 

@@ -19,7 +19,6 @@
 #   when: vagrant_check_deb.rc == 1
 # - name: Install my_package
 #   apt: deb="/home/{{ ansible_env.USER }}/Downloads/{{ my_package_name }}.deb"
-#   sudo: true
 #   when: vagrant_check_deb.rc == 1
 
 - include: "{{ role_path }}/modules/getDpkg.yml"
@@ -41,7 +40,6 @@
 #   tags: ubuntu
 # - name: Install vscode
 #   apt: deb="/home/{{ ansible_env.USER }}/Downloads/{{ vscode_name }}.deb"
-#   sudo: true
 #   when: vscode_check_deb.rc == 1
 #   tags: ubuntu
     
