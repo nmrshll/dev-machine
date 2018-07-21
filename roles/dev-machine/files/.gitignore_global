@@ -35,3 +35,9 @@
 .Trashes
 thumbs.db
 Thumbs.db
+
+# vscode local file history
+.history
+.db
+.build
+node_modules
