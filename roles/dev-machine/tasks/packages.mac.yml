@@ -20,6 +20,7 @@
     - python3
     - go
     - docker-compose
+    - kubectl
 
 - name: Install Brew Cask packages
   ignore_errors: yes
@@ -44,4 +45,5 @@
     - todoist
     - postico
     - postman
+    - minikube
     
