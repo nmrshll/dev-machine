@@ -1,5 +1,7 @@
 ---
 
+# - name: install python-apt (needed for ansible)
+
 - apt_repository:
     repo: deb http://dl.google.com/linux/chrome/deb/ stable main
     state: present

@@ -18,6 +18,7 @@ fi
 if [[ "$(uname)" == 'Darwin' ]]; then
     ansible-playbook -i "localhost," -c local --become-method=su playbook.yml --skip-tags ubuntu
 elif [[ "$(uname)" == 'Linux' ]]; then
+    sudo apt install -y python-apt
     ansible-playbook -i "localhost," -c local --become-method=su playbook.yml --skip-tags mac 
 fi
 
