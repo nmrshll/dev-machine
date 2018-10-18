@@ -8,6 +8,10 @@
     # Insert value
     TJQ=$(cat {{ item.filePath }} | jq '{{ item.jqCommand }}')
     if ! [ -z ${TJQ} ]; then echo ${TJQ} > {{ item.filePath }}; fi
+  register: shell_result
+
+- debug: 
+    var: shell_result.stdout_lines
 
 
     # echo ${TJQ} > {{ item.filePath }}
