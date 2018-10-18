@@ -61,10 +61,17 @@
     - ms-vsliveshare.vsliveshare
     - xyz.local-history
 
+- name: add user settings
+  include: "{{ role_path }}/modules/jqInsertIntoObject.yml"
+  with_items:
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."[javascript]"={"editor.formatOnSave": false}' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."eslint.autoFixOnSave"=true' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."eslint.alwaysShowStatus"=true' }
+
 - name: set keyboard shortcuts on ubuntu
   include: "{{ role_path }}/modules/jqInsertIntoArray.yml"
   tags: ubuntu
   with_items:
     - { filePath: '$HOME/Library/Application\ Support/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+alt+o", "command": "workbench.action.files.openFile" }]' }
     - { filePath: '$HOME/Library/Application\ Support/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+o", "command": "workbench.action.files.openFolder" }]' }
-  
+
