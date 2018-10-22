@@ -116,6 +116,9 @@
         name=$(basename $1 .rs)
         rustc $@ && ./$name && rm $name
       }
+      ghcp() {
+        curl "https://codeload.github.com/${1}/zip/${2}" | tar -xf - -C .
+      }
 
 - name: shell functions for mac
   tags: mac
