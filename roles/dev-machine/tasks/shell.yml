@@ -117,7 +117,8 @@
         rustc $@ && ./$name && rm $name
       }
       ghcp() {
-        curl "https://codeload.github.com/${1}/zip/${2}" | tar -xf - -C .
+        if [ ! -e ${2} ]; then echo "${2} set " && BRANCH=${2}; else BRANCH=master; fi
+        curl "https://codeload.github.com/${1}/zip/${BRANCH}" | tar -xf - -C .
       }
 
 - name: shell functions for mac
