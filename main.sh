@@ -11,7 +11,7 @@ if [[ "$(uname)" == 'Darwin' ]]; then
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     fi 
 elif [[ "$(uname)" == 'Linux' ]]; then
-    which ansible-playbook > /dev/null || sudo apt install -y ansible
+    dpkg -s ansible-playbook &> /dev/null || sudo apt install -y ansible
 fi
 
 # Provision machine with ansible
