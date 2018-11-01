@@ -4,7 +4,7 @@
   blockinfile: 
     dest: ~/.shrc
     create: yes
-    marker: "# {mark} alias {{item.key}}"
+    marker: "# {mark} shell functions for ubuntu"
     block: |
       mkcd () {
         mkdir -p $1

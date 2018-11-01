@@ -1,16 +1,16 @@
 ---
 
 - name: Install packages from Homebrew
+  tags: mac
   homebrew: name={{ item }} state=present
   with_items:
     - git
-  tags: mac
 
 - name: Install packages from apt
+  tags: ubuntu
   apt: name={{ item }} state=present
   with_items:
     - git
-  tags: ubuntu
 
 - name: Create Git configs
   git_config: scope=global name={{ item.name }} value={{ item.value }}
@@ -48,7 +48,6 @@
     # - { name: 'pull.rebase', value: true }
 
 - name: copy .gitignore_global
-  tags: debug
   copy:
     src: .gitignore_global
     dest: ~/.gitignore_global

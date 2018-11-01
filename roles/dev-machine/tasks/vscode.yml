@@ -7,41 +7,12 @@
   with_items:
     - visual-studio-code
 
-# - name: Check if my_package is installed
-#   command: dpkg-query -W my_package
-#   register: my_package_check_deb
-#   failed_when: my_package_check_deb.rc > 1
-#   changed_when: my_package_check_deb.rc == 1
-# - name: Download my_package
-#   get_url: 
-#     url="{{ my_package_url }}"
-#     dest="/home/{{ ansible_env.USER }}/Downloads/{{ my_package_name }}.deb"
-#   when: vagrant_check_deb.rc == 1
-# - name: Install my_package
-#   apt: deb="/home/{{ ansible_env.USER }}/Downloads/{{ my_package_name }}.deb"
-#   when: vagrant_check_deb.rc == 1
 
 - include: "{{ role_path }}/modules/getDpkg.yml"
   tags: ubuntu
   with_items:
     - { name: 'vscode', url: 'https://az764295.vo.msecnd.net/stable/3aeede733d9a3098f7b4bdc1f66b63b0f48c1ef9/code_1.22.2-1523551015_amd64.deb' }
 
-# - name: Check if vscode is installed
-#   command: dpkg-query -W vscode
-#   register: vscode_check_deb
-#   failed_when: vscode_check_deb.rc > 1
-#   changed_when: vscode_check_deb.rc == 1
-#   tags: ubuntu
-# - name: Download vscode
-#   get_url: 
-#     url="{{ vscode_url }}"
-#     dest="/home/{{ ansible_env.USER }}/Downloads/{{ vscode_name }}.deb"
-#   when: vscode_check_deb.rc == 1
-#   tags: ubuntu
-# - name: Install vscode
-#   apt: deb="/home/{{ ansible_env.USER }}/Downloads/{{ vscode_name }}.deb"
-#   when: vscode_check_deb.rc == 1
-#   tags: ubuntu
     
 - name: Install code packages
   command: code --install-extension {{ item }}
@@ -52,16 +23,17 @@
     - DavidAnson.vscode-markdownlint
     - PeterJausovec.vscode-docker
     - dbaeumer.vscode-eslint
-    - eg2.vscode-npm-script
-    - felipecaputo.git-project-manager
+    # - eg2.vscode-npm-script
+    # - felipecaputo.git-project-manager
     - msjsdiag.debugger-for-chrome
     - wayou.vscode-todo-highlight
     - ms-vscode.go
-    - mubaidr.vuejs-extension-pack
+    # - mubaidr.vuejs-extension-pack
     - ms-vsliveshare.vsliveshare
     - xyz.local-history
 
 - name: add user settings
+  tags: mac
   include: "{{ role_path }}/modules/jqInsertIntoObject.yml"
   with_items:
     - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."[javascript]"={"editor.formatOnSave": false}' }
@@ -69,8 +41,8 @@
     - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."eslint.alwaysShowStatus"=true' }
 
 - name: set keyboard shortcuts on ubuntu
-  include: "{{ role_path }}/modules/jqInsertIntoArray.yml"
   tags: ubuntu
+  include: "{{ role_path }}/modules/jqInsertIntoArray.yml"
   with_items:
     - { filePath: '$HOME/Library/Application\ Support/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+alt+o", "command": "workbench.action.files.openFile" }]' }
     - { filePath: '$HOME/Library/Application\ Support/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+o", "command": "workbench.action.files.openFolder" }]' }
