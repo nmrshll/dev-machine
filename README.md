@@ -4,12 +4,6 @@ Dev machine setup with ansible scripts.
 
 Installs all the apps and tools I need after a clean install of Mac OS or Ubuntu.
 
-Runs ansible, provisioning local machine with dev tools and setup.
-
-## Requires
-
-Currently, Ansible and Brew. These will be automatically installed if missing.
-
 ## Usage
 
 ### Quick start
@@ -17,6 +11,15 @@ Currently, Ansible and Brew. These will be automatically installed if missing.
 `git clone https://github.com/nmrshll/dev-machine.git && cd dev-machine && ./main.sh`
 
 **WARNING: This *will* install and modify packages on your machine. Read through the files in [`roles/dev-machine/tasks`](https://github.com/nmrshll/dev-machine/tree/master/roles/dev-machine/tasks) so you know what will happen.**
+
+##### Alternatively, download the folder as a .zip from github and run `./main.sh`
+
+### Requirements
+
+- git (for the quick start one-liner command)
+- ansible (will be auto-installed if missing)
+- homebrew (macOS only) (will be auto-installed if missing)
+
 
 ### Software installed by this script
 
