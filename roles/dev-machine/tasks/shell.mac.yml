@@ -1,0 +1,41 @@
+---
+
+- name: shell functions for mac
+  blockinfile:
+    dest: ~/.shrc
+    create: yes
+    marker: "# ANSIBLE {mark} shell functions for mac"
+    block: |
+      installDmgFromUrl() {
+          URL=$1
+          dmg=$(mktemp)
+          wget -O ${dmg} $URL
+          mountPoint=/Volumes/$(openssl rand -hex 16)
+          echo ${mountPoint}
+          hdiutil attach ${dmg} -mountpoint ${mountPoint}
+          cd ${mountPoint}
+
+          # install any .pkg
+          sudo installer -pkg $(find *.pkg) -target "/"
+
+          # install any .app
+          for app in $(find ${mountPoint} -type d -maxdepth 2 -name \*.app); do
+              cp -a ${app} /Applications/
+          done
+
+          hdiutil detach ${mountPoint}
+          rm ${dmg}
+      }
+
+- name: mac aliases
+  blockinfile:
+    dest: ~/.shrc
+    create: yes
+    marker: "# {mark} alias {{item.key}}"
+    block: |
+      alias {{ item.key }}="{{ item.value }}"
+  with_dict: "{{aliases}}"
+  vars:
+    aliases:
+      copy_ssh: "cat ~/.ssh/id_rsa.pub | pbcopy"
+      chrome: "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"

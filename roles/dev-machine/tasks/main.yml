@@ -10,9 +10,13 @@
 - import_tasks: programming/other.yml
 
 - import_tasks: settings.yml
+
 - import_tasks: shell.yml
 - import_tasks: shell.ubuntu.yml
   tags: ubuntu
+- import_tasks: shell.mac.yml
+  tags: mac
+
 - import_tasks: version-control.yml
 - import_tasks: virtualization.yml
 - import_tasks: vscode.yml

@@ -22,3 +22,11 @@
 #   with_items:
 #     # - gitkraken
 #     # - lib32z1 lib32ncurses5 lib32stdc++6
+
+- name: install packages on ubuntu
+  tags: ubuntu
+  apt: name={{ item }} state=present
+  become: true
+  become_method: sudo
+  with_items:
+    - xclip

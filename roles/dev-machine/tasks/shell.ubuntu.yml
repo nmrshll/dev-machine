@@ -1,10 +1,23 @@
 ---
 
-- name: shell functions into shrc for ubuntu
-  blockinfile: 
+- name: aliases into shrc
+  blockinfile:
     dest: ~/.shrc
     create: yes
-    marker: "# {mark} shell functions for ubuntu"
+    marker: "# {mark} alias {{item.key}}"
+    block: |
+      alias {{ item.key }}="{{ item.value }}"
+  with_dict: "{{aliases}}"
+  vars:
+    aliases:
+      sshpbkcopy: 'cat ~/.ssh/id_rsa.pub | xclip'
+
+- name: shell functions for ubuntu
+  tags: ubuntu
+  blockinfile:
+    dest: ~/.shrc
+    create: yes
+    marker: "# ANSIBLE {mark} shell functions for ubuntu"
     block: |
       mkcd () {
         mkdir -p $1
@@ -19,28 +32,12 @@
         cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1
       }
 
-      wgetAndDpkg() {
-        cd ~
-        URL=$1
-        FILE=`mktemp`
-        wget "$URL" -O $FILE && sudo dpkg -i --force-depends $FILE	
-        rm $FILE
-      }
-
       wgetAndExecute() {
         URL=$1
         FILE=`mktemp`
         wget "$URL" -O $FILE
           chmod +x $FILE
           $FILE	
-        rm $FILE
-      }
-
-      wgetAndSh() {
-        URL=$1
-        FILE=`mktemp`
-        wget "$URL" -O $FILE
-        sh $FILE
         rm $FILE
       }
 
@@ -79,6 +76,21 @@
           fi
       }
 
+      wgetAndDpkg() {
+        cd ~
+        URL=$1
+        FILE=`mktemp`
+        wget "$URL" -O $FILE && sudo dpkg -i --force-depends $FILE	
+        rm $FILE
+      }
+      wgetAndSh() {
+        URL=$1
+        FILE=`mktemp`
+        wget "$URL" -O $FILE
+        sh $FILE
+        rm $FILE
+      }
+
       getAndExtract() {
           DWN_DEST=`mktemp -d`
           EXTRACT_DEST=`mktemp -d`
@@ -95,13 +107,11 @@
           rm -rf ${DWN_DEST}
           rm -rf ${EXTRACT_DEST}
       }
-
       newxp() {
           dir=$(randstring8)
           mkcd ~/dev/experiments/${dir}
           code .
       }
-
       newgoXP() {
           dir=$(randstring8)
           mkcd ~/dev/go/src/experiments/${dir}

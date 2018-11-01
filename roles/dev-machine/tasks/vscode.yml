@@ -47,3 +47,5 @@
     - { filePath: '$HOME/Library/Application\ Support/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+alt+o", "command": "workbench.action.files.openFile" }]' }
     - { filePath: '$HOME/Library/Application\ Support/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+o", "command": "workbench.action.files.openFolder" }]' }
 
+- name: set as default program for text files
+  shell: xdg-mime default code.desktop text/plain

@@ -16,6 +16,7 @@
   git_config: scope=global name={{ item.name }} value={{ item.value }}
   with_items:
     - { name: 'user.name', value: 'nmrshll' }
+    - { name: 'user.email', value: 'marshall.nicolas@gmail.com' }
     - { name: 'core.excludesfile', value: '~/.gitignore_global' }
     # - { name: 'core.pager', value: 'diff-so-fancy | less --tabs=1,5 -R' }
     # - { name: 'color.branch', value: "always" }

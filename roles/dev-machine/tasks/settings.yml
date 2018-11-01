@@ -1,16 +1,16 @@
 ---
 
 - name: Show hidden files in finder by default
-  osx_defaults: domain=com.apple.finder key=AppleShowAllFiles type=bool value=true state=present
   tags: mac
+  osx_defaults: domain=com.apple.finder key=AppleShowAllFiles type=bool value=true state=present
 
 - name: Reduce keyboard key repeat delay
-  osx_defaults: key=InitialKeyRepeat type=int value=15 state=present
   tags: mac
+  osx_defaults: key=InitialKeyRepeat type=int value=15 state=present
 
 - name: Increase keyboard key repeat speed
-  osx_defaults: key=KeyRepeat type=int value=2
   tags: mac
+  osx_defaults: key=KeyRepeat type=int value=2
 
 - name: Set cron shell
   cron: name=SHELL env=yes value=/bin/zsh
@@ -19,7 +19,9 @@
   cron: name=PATH env=yes value=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 - name: create karabiner config folder
+  tags: mac
   file: path="~/.karabiner.d/configuration" state=directory
+
 - name: karabiner configuration
   tags: mac
   copy:
