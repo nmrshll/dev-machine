@@ -1,8 +1,8 @@
 # dev-machine
 
-Dev machine setup with ansible scripts
+Dev machine setup with ansible scripts.
+Installs everything I need on a clean install of Mac OS or Ubuntu.
 
-For more information, see Steve Edson's [blog post](https://steveedson.co.uk/ansible/dev-machine).
 
 Runs ansible, provisioning local machine with dev tools and setup.
 
@@ -12,10 +12,27 @@ Currently, Ansible and Brew. These will be automatically installed if missing.
 
 ## Usage
 
-Simply run `./main.sh`.
+### Quick start
+
+`git clone https://github.com/nmrshll/dev-machine.git && cd dev-machine && ./main.sh`
 
 **WARNING: This *will* install and modify packages on your machine. Read through the files in [`roles/dev-machine/tasks`](https://github.com/nmrshll/dev-machine/tree/master/roles/dev-machine/tasks) so you know what will happen.**
 
-### One Liner
+### Software installed by this script
 
-`git clone https://github.com/nmrshll/dev-machine.git && cd dev-machine && ./main.sh`
+- google chrome, firefox
+- visual studio code & plugins, settings
+- git & settings
+- shell functions & aliases
+- programming languages:
+    - go
+    - nodejs & npm, yarn
+    - python
+    - ruby
+- gitkraken
+- docker, docker-compose, kubernetes, kubectl, minikube
+- virtualbox & vagrant
+
+# Related
+
+For more information on how this work and how to create your own from scratch, see Steve Edson's [blog post](https://steveedson.co.uk/ansible/dev-machine).
