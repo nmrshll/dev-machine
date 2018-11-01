@@ -4,6 +4,8 @@ Dev machine setup with ansible scripts.
 
 Installs all the apps and tools I need after a clean install of Mac OS or Ubuntu.
 
+Using an ansible playbook makes this way cleaner, faster, and maintainable than the bash scripts I had before. For more information on how this works and how to create your own from scratch, see Steve Edson's [blog post](https://steveedson.co.uk/ansible/dev-machine).
+
 ## Usage
 
 ### Quick start
@@ -38,4 +40,4 @@ Installs all the apps and tools I need after a clean install of Mac OS or Ubuntu
 
 ## Related
 
-For more information on how this work and how to create your own from scratch, see Steve Edson's [blog post](https://steveedson.co.uk/ansible/dev-machine).
+For more information on how this works and how to create your own from scratch, see Steve Edson's [blog post](https://steveedson.co.uk/ansible/dev-machine).
