@@ -2,9 +2,9 @@
 
 # Install minimal dependencies
 if [[ "$(uname)" == 'Darwin' ]]; then
-    # Install Homebrew, if not already installed
+    # Install Homebrew if missing
     which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    # Install Ansible, if not already installed
+    # Install Ansible if missing
     which ansible-playbook > /dev/null || brew install ansible
     # Install oh my zsh
     if [ ! -d "~/.oh-my-zsh" ]; then
@@ -12,13 +12,13 @@ if [[ "$(uname)" == 'Darwin' ]]; then
     fi 
 elif [[ "$(uname)" == 'Linux' ]]; then
     which ansible-playbook > /dev/null || sudo apt install -y ansible
+    which python-apt > /dev/null || sudo apt install -y python-apt
 fi
 
 # Provision machine with ansible
 if [[ "$(uname)" == 'Darwin' ]]; then
     ansible-playbook -i "localhost," -c local --become-method=su playbook.yml --skip-tags ubuntu
 elif [[ "$(uname)" == 'Linux' ]]; then
-    sudo apt install -y python-apt
     ansible-playbook -i "localhost," -c local --become-method=su playbook.yml --skip-tags mac 
 fi
 

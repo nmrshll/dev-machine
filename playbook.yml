@@ -3,12 +3,10 @@
 - hosts: all
   roles:
     - dev-machine
-    # - { role: mac, tags: [mac] }
-    # - { role: ubuntu, tags: [ubuntu] }
 
     # - { role: applications, tags: [ 'mac' ] }
     # - vscode
     # - shell
     # - programming-languages
     # - settings
-  user: teamwork
+  # user: teamwork

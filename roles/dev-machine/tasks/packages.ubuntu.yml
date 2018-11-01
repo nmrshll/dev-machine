@@ -2,17 +2,23 @@
 
 # - name: install python-apt (needed for ansible)
 
-- apt_repository:
-    repo: deb http://dl.google.com/linux/chrome/deb/ stable main
-    state: present
-    filename: google-chrome
-- name: chrome
-  apt: name=google-chrome state=present
+# - apt_repository:
+#     repo: deb http://dl.google.com/linux/chrome/deb/ stable main
+#     state: present
+#     filename: google-chrome
+# - name: chrome
+#   apt: name=google-chrome state=present
 
-
-- name: install packages on ubuntu
-  apt: name={{ item }} state=present
+- include: "{{ role_path }}/modules/getDpkg.yml"
+  tags: ubuntu
   with_items:
-    # - google-chrome-stable
-    - gitkraken
-    - lib32z1 lib32ncurses5 lib32stdc++6
+    - { name: 'chrome', url: 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb' }
+    - { name: 'gitkraken', url: 'https://release.gitkraken.com/linux/gitkraken-amd64.deb' }
+
+
+# - name: install packages on ubuntu
+#   tags: ubuntu
+#   apt: name={{ item }} state=present
+#   with_items:
+#     # - gitkraken
+#     # - lib32z1 lib32ncurses5 lib32stdc++6
