@@ -3,7 +3,6 @@
 Dev machine setup with ansible scripts.
 Installs everything I need on a clean install of Mac OS or Ubuntu.
 
-
 Runs ansible, provisioning local machine with dev tools and setup.
 
 ## Requires
@@ -25,14 +24,14 @@ Currently, Ansible and Brew. These will be automatically installed if missing.
 - git & settings
 - shell functions & aliases
 - programming languages:
-    - go
-    - nodejs & npm, yarn
-    - python
-    - ruby
+  - go
+  - nodejs & npm, yarn
+  - python
+  - ruby
 - gitkraken
-- docker, docker-compose, kubernetes, kubectl, minikube
+- docker, docker-compose, kubernetes (kubectl, minikube)
 - virtualbox & vagrant
 
-# Related
+## Related
 
 For more information on how this work and how to create your own from scratch, see Steve Edson's [blog post](https://steveedson.co.uk/ansible/dev-machine).
