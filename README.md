@@ -1,7 +1,8 @@
 # dev-machine
 
 Dev machine setup with ansible scripts.
-Installs everything I need on a clean install of Mac OS or Ubuntu.
+
+Installs all the apps and tools I need after a clean install of Mac OS or Ubuntu.
 
 Runs ansible, provisioning local machine with dev tools and setup.
 
