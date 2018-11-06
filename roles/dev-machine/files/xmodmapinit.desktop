@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/me/.config/xmodmap/xmodmapscript.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=xmodmap after boot
+Name=xmodmap after boot
+Comment[en_US]=
+Comment=

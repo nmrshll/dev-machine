@@ -15,5 +15,6 @@
 - name: Install {{ item.name }}
   become: true
   become_method: sudo
+  ignore_errors: true
   apt: deb="/home/{{ ansible_env.USER }}/Downloads/dpkg/{{ item.name }}.deb"
   # when: "{{ item.name }}_check_deb.rc == 1"

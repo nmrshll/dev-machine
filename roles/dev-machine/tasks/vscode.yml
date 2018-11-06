@@ -10,6 +10,7 @@
 
 - include: "{{ role_path }}/modules/getDpkg.yml"
   tags: ubuntu
+  ignore_errors: yes
   with_items:
     - { name: 'vscode', url: 'https://az764295.vo.msecnd.net/stable/3aeede733d9a3098f7b4bdc1f66b63b0f48c1ef9/code_1.22.2-1523551015_amd64.deb' }
 
@@ -17,8 +18,8 @@
 - name: Install code packages
   command: code --install-extension {{ item }}
   ignore_errors: yes
-  # register: vscode_result
-  # changed_when: "'already installed' not in vscode_result.stdout"
+  register: vscode_result
+  changed_when: "'already installed' not in vscode_result.stdout"
   with_items:
     - DavidAnson.vscode-markdownlint
     - PeterJausovec.vscode-docker
@@ -29,7 +30,7 @@
     - wayou.vscode-todo-highlight
     - ms-vscode.go
     # - mubaidr.vuejs-extension-pack
-    - ms-vsliveshare.vsliveshare
+    # - ms-vsliveshare.vsliveshare
     - xyz.local-history
 
 - name: add user settings
@@ -48,4 +49,14 @@
     - { filePath: '$HOME/Library/Application\ Support/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+o", "command": "workbench.action.files.openFolder" }]' }
 
 - name: set as default program for text files
+  tags: ubuntu
   shell: xdg-mime default code.desktop text/plain
+- name: set as default editor
+  tags: ubuntu
+  become: true
+  become_method: sudo
+  shell: update-alternatives --set editor /usr/bin/code
+
+
+# - name: put code on path
+#   shell: sudo ln -s $(realpath /usr/share/code/code) /usr/local/bin/code
