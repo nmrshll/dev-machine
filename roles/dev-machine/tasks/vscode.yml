@@ -43,11 +43,11 @@
   tags: ubuntu debug
   include: "{{ role_path }}/modules/jqInsertIntoObject.yml"
   with_items:
-    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."editor.formatOnSave": true' }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."editor.formatOnSave"=true' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."[javascript]"={"editor.formatOnSave": false}' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."eslint.autoFixOnSave"=true' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."eslint.alwaysShowStatus"=true' }
-    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."go.gopath"=$HOME/.cache/go' }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."go.gopath"="$HOME/.cache/go"' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."go.formatTool"="goimports"' }
 
 - name: set keyboard shortcuts on ubuntu
