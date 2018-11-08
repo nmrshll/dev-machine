@@ -31,52 +31,6 @@
   ignore_errors: yes
   shell: ssh-keygen -t rsa -f ~/.ssh/id_rsa -P ""
 
-# - name: add gnome theme
-#   tags: ubuntu
-#   shell: |
-#     cd /tmp && rm -rf flat-remix-gnome-theme &&
-#     git clone https://github.com/daniruiz/flat-remix-gnome &&
-#     mkdir -p ~/.themes && cp -r /tmp/flat-remix-gnome/Flat-Remix* ~/.themes &&
-#     gsettings set org.gnome.shell.extensions.user-theme name "Flat-Remix";
-
-# - name: Start service supervisor, if not started
-#   tags: ubuntu
-#   service:
-#     name: supervisor
-#     state: started
-
-# - name: run xmodmap on init
-#   tags: ubuntu
-#   become: true
-#   become_method: sudo
-#   copy:
-#     src: xmodmapinit.conf
-#     dest: /etc/supervisor/conf.d/xmodmapinit.conf
-# - name: auto-restart services on boot
-#   tags: ubuntu
-#   become: true
-#   become_method: sudo
-#   shell: sudo update-rc.d supervisor defaults
-# - name: enable supervisor service (persistent)
-#   tags: ubuntu
-#   become: true
-#   become_method: sudo
-#   shell: |
-#     mkdir /var/log/supervisor
-#     touch /var/run/supervisor.sock
-#     chmod 777 /var/run/supervisor.sock
-#     systemctl enable supervisor
-#     systemctl start supervisor
-#     supervisorctl reread
-#     supervisorctl update
-
-# - name: auto run xmodmap after boot
-#   tags: ubuntu
-#   cron:
-#     user: me
-#     job: "/usr/bin/xmodmap /home/me/.xmodmap"
-#     special_time: reboot
-
 - name: create xmodmap config folder
   tags: ubuntu
   file: path="~/.config/xmodmap" state=directory
