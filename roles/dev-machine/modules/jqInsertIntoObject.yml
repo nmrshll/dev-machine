@@ -1,5 +1,11 @@
 ---
 
+- name: install packages on ubuntu
+  tags: ubuntu
+  become: true
+  become_method: sudo
+  apt: name=jq state=present
+
 - name: insert value into JSON object file
   # shell: "echo {{ item.file }} && TJQ=$(cat $HOME/Library/Application\ Support/Code/User/settings.json | jq '.body.test2=[\"hohohoho\"]') && echo ${TJQ}"
   shell: |

@@ -50,7 +50,7 @@
   ignore_errors: yes
   shell: |
     go get -u golang.org/x/tools/cmd/godoc
-    go get github.com/golang/lint/golint
+    go get -u github.com/golang/lint/golint
     go get -u github.com/golang/dep/cmd/dep
 
 # - name: set vscode gopath

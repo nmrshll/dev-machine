@@ -36,6 +36,14 @@
     - supervisor
     - deluge
     - vlc
+    - qemu-kvm
+    - qemu
+    - virt-manager
+    - virt-viewer
+    # - libvirt-bin
+    - filezilla
+    - jq
+    - curl
 
 - apt_repository:
     repo: ppa:daniruiz/flat-remix
@@ -45,3 +53,4 @@
   become: true
   become_method: sudo
   apt: name=flat-remix-gnome state=present
+  

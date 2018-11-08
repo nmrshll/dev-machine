@@ -96,6 +96,18 @@
     src: xmodmapinit.desktop
     dest: ~/.config/autostart/xmodmapinit.desktop
 
+- name: phone into .ssh/config
+  blockinfile:
+    dest: ~/.ssh/config
+    create: yes
+    marker: "# {mark} phone (simpleSSHD)"
+    block: |
+      Host phone
+        HostName 192.168.1.2
+        User tissot_sprout
+        Port 2222
+
+
 
 
 

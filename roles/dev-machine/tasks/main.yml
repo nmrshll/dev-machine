@@ -8,6 +8,7 @@
 - import_tasks: programming/go.yml
 - import_tasks: programming/node.yml
 - import_tasks: programming/other.yml
+- import_tasks: programming/rust.yml
 
 - import_tasks: settings.yml
 

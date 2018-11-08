@@ -1,0 +1,26 @@
+---
+
+- name: dependency packages
+  tags: ubuntu
+  become: true
+  become_method: sudo
+  apt: name=curl state=present
+
+- name: download and install rust
+  ignore_errors: yes
+  warn: false
+  shell: |
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+- name: build and run function onto profile
+  tags: debug
+  blockinfile:
+    dest: ~/.shrc
+    create: yes
+    marker: "# ANSIBLE {mark} rust build and run"
+    block: |
+      rust() {
+        name=$(basename $1 .rs)
+        rustc $@ && ./$name && rm $name
+      }
+
