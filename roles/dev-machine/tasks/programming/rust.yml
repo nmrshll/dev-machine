@@ -8,7 +8,8 @@
 
 - name: download and install rust
   ignore_errors: yes
-  warn: false
+  args:
+    warn: false
   shell: |
     curl https://sh.rustup.rs -sSf | sh -s -- -y
 
