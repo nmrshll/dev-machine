@@ -8,7 +8,7 @@
     - npm
     - yarn
 
-- name: install nvm / node dependencies on ubuntu
+- name: install node dependencies on ubuntu
   tags: ubuntu
   apt: name={{ item }} state=present
   become: true
@@ -16,6 +16,12 @@
   with_items:
     - nodejs
     - npm
+
+- name: install nvm
+  tags: ubuntu
+  shell: |
+    curl -o- -L https://yarnpkg.com/install.sh | bash
+
 
 # - name: install nvm
 #   tags: ubuntu
