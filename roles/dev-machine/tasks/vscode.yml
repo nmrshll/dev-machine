@@ -56,7 +56,8 @@
   with_items:
     - { filePath: '$HOME/.config/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+alt+o", "command": "workbench.action.files.openFile" }]' }
     - { filePath: '$HOME/.config/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+o", "command": "workbench.action.files.openFolder" }]' }
-
+    - { filePath: '$HOME/.config/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+[Backquote]", "command": "workbench.action.terminal.toggleTerminal" }]' }
+    
 - name: set as default program for text files
   tags: ubuntu
   shell: xdg-mime default code.desktop text/plain
