@@ -49,6 +49,7 @@
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."eslint.alwaysShowStatus"=true' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."go.gopath"="/home/{{ ansible_env.USER }}/.cache/go"' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."go.formatTool"="goimports"' }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."files.watcherExclude"={"**/.git/objects/**":true,"**/.git/subtree-cache/**":true,"**/node_modules/*/**":true,"**/.history/**":true}' }
 
 - name: set keyboard shortcuts on ubuntu
   tags: ubuntu
@@ -66,3 +67,13 @@
   become: true
   become_method: sudo
   shell: update-alternatives --set editor /usr/bin/code
+
+- name: increase max inotify watch limit
+  become: true
+  become_method: sudo
+  blockinfile:
+    dest: /etc/sysctl.conf
+    create: yes
+    marker: "# {mark} inotify limit (for vscode)"
+    block: |
+        fs.inotify.max_user_watches=524288
