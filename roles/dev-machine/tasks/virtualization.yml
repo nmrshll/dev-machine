@@ -16,16 +16,16 @@
     - docker
     - virtualbox
 
-- name: Create system aliases
-  lineinfile: dest=~/.shrc line='alias {{ item.key }}=\"{{ item.value }}\"' insertafter='# aliases'
-  with_dict: "{{aliases}}"
-  vars:
-    aliases:
-      docker_clean_images: 'docker rmi \$(docker images -a --filter=dangling=true -q) --force'
-      docker_clean_containers: 'docker rm -v \$(docker ps -a -q -f status=exited)'
-      docker_clean_volumes: 'docker volume rm \$(docker volume ls -qf dangling=true)'
-      docker_clean: 'docker_clean_images; docker_clean_containers; docker_clean_volumes'
-      # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
+# - name: Create system aliases
+#   lineinfile: dest=~/.shrc line='alias {{ item.key }}=\"{{ item.value }}\"' insertafter='# aliases'
+#   with_dict: "{{aliases}}"
+#   vars:
+#     aliases:
+#       docker_clean_images: 'docker rmi \$(docker images -a --filter=dangling=true -q) --force'
+#       docker_clean_containers: 'docker rm -v \$(docker ps -a -q -f status=exited)'
+#       docker_clean_volumes: 'docker volume rm \$(docker volume ls -qf dangling=true)'
+#       docker_clean: 'docker_clean_images; docker_clean_containers; docker_clean_volumes'
+#       # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
 
 - name: aliases into shrc
   blockinfile:
@@ -43,35 +43,19 @@
       docker_clean: 'docker_clean_images; docker_clean_containers; docker_clean_volumes'
       # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
 
-# - name: docker on ubuntu
-#   tags: ubuntu
-#   become: true
-#   become_method: sudo
-#   shell: curl -fsSL get.docker.com -o get-docker.sh | sh
-
-# - name: remove any previous packages
-#   tags: ubuntu
-#   apt: name={{item}} state=absent
-#   become: true
-#   become_method: sudo
-#   with_items:
-#     - docker
-#     - docker-engine
-#     - docker.io
-# - name: install packages on ubuntu
-#   tags: ubuntu
-#   apt: name={{ item }} state=present
-#   become: true
-#   become_method: sudo
-#   with_items:
-#     - docker-ce
-
 - include: "{{ role_path }}/modules/getDpkg.yml"
   tags: ubuntu
   with_items:
     - { name: 'docker', url: 'https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce_18.06.1~ce~3-0~ubuntu_amd64.deb' }
+- name: make docker run without sudo
+  tags: ubuntu
+  become: true
+  become_method: sudo
+  shell: |
+    groupadd docker
+    usermod -aG docker {{ ansible_env.USER }}
 
-- name: docker-compose on ubuntu
+- name: add docker-compose
   tags: ubuntu
   become: true
   become_method: sudo
