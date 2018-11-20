@@ -79,7 +79,7 @@
     - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.lintTool"="golint"' }
     # - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.formatOnSave"=true' }
     - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.formatTool"="goreturns"' }
-    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.gopath"="$HOME/.cache/go"' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.gopath"="$HOME/.cache/go:$HOME"' }
 
     
 #   tags: ubuntu

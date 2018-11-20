@@ -40,14 +40,14 @@
     - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."eslint.alwaysShowStatus"=true' }
 
 - name: add user settings on ubuntu
-  tags: ubuntu debug
+  tags: ubuntu
   include: "{{ role_path }}/modules/jqInsertIntoObject.yml"
   with_items:
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."editor.formatOnSave"=true' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."[javascript]"={"editor.formatOnSave": false}' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."eslint.autoFixOnSave"=true' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."eslint.alwaysShowStatus"=true' }
-    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."go.gopath"="/home/{{ ansible_env.USER }}/.cache/go"' }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."go.gopath"="/home/{{ ansible_env.USER }}/.cache/go:/home/{{ ansible_env.USER }}"' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."go.formatTool"="goimports"' }
     - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."files.watcherExclude"={"**/.git/objects/**":true,"**/.git/subtree-cache/**":true,"**/node_modules/*/**":true,"**/.history/**":true}' }
 
