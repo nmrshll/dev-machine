@@ -43,4 +43,40 @@
       docker_clean: 'docker_clean_images; docker_clean_containers; docker_clean_volumes'
       # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
 
-      
+# - name: docker on ubuntu
+#   tags: ubuntu
+#   become: true
+#   become_method: sudo
+#   shell: curl -fsSL get.docker.com -o get-docker.sh | sh
+
+# - name: remove any previous packages
+#   tags: ubuntu
+#   apt: name={{item}} state=absent
+#   become: true
+#   become_method: sudo
+#   with_items:
+#     - docker
+#     - docker-engine
+#     - docker.io
+# - name: install packages on ubuntu
+#   tags: ubuntu
+#   apt: name={{ item }} state=present
+#   become: true
+#   become_method: sudo
+#   with_items:
+#     - docker-ce
+
+- include: "{{ role_path }}/modules/getDpkg.yml"
+  tags: ubuntu
+  with_items:
+    - { name: 'docker', url: 'https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce_18.06.1~ce~3-0~ubuntu_amd64.deb' }
+
+- name: docker-compose on ubuntu
+  tags: ubuntu
+  become: true
+  become_method: sudo
+  shell: curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+    
+
+  
