@@ -7,14 +7,19 @@
 #   register: "{{ item.name }}_check_deb"
 #   failed_when: "{{ item.name }}_check_deb.rc > 1"
 #   changed_when: "{{ item.name }}_check_deb.rc == 1"
+
 - name: Download {{ item.name }}
   get_url: 
     url={{ item.url }}
     dest="/home/{{ ansible_env.USER }}/Downloads/dpkg/{{ item.name }}.deb"
+  async: 45
+  poll: 5
   # when: "{{ item.name }}_check_deb.rc == 1"
+
 - name: Install {{ item.name }}
   become: true
   become_method: sudo
   ignore_errors: true
   apt: deb="/home/{{ ansible_env.USER }}/Downloads/dpkg/{{ item.name }}.deb"
-  # when: "{{ item.name }}_check_deb.rc == 1"
+  async: 45
+  poll: 5
