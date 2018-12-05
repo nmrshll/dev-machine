@@ -28,6 +28,7 @@
 #       # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
 
 - name: aliases into shrc
+  tags: debug
   blockinfile:
     dest: ~/.shrc
     create: yes
@@ -39,6 +40,7 @@
     aliases:
       docker_clean_images: 'docker rmi \$(docker images -a --filter=dangling=true -q) --force'
       docker_clean_containers: 'docker rm -v \$(docker ps -a -q -f status=exited)'
+      docker_kill_all: 'docker update --restart=no \$(docker ps -a -q); docker kill -v -f \$(docker ps -a -q); docker rm -v -f \$(docker ps -a -q)'
       docker_clean_volumes: 'docker volume rm \$(docker volume ls -qf dangling=true)'
       docker_clean: 'docker_clean_images; docker_clean_containers; docker_clean_volumes'
       # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
