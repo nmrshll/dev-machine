@@ -22,7 +22,7 @@
   become: true
   become_method: sudo
   unarchive:
-    src: https://storage.googleapis.com/golang/go1.10.1.linux-amd64.tar.gz
+    src: https://dl.google.com/go/go1.11.linux-amd64.tar.gz
     dest: /usr/local
     remote_src: yes
 
@@ -39,6 +39,8 @@
     block: |
       export GOPATH=$HOME/.cache/go:$HOME
       export PATH=$PATH:/usr/local/go/bin:$HOME/.cache/go/bin:$HOME/bin
+      export GO111MODULE=on
+
 
 - name: make dir ~/src
   file: path=~/src state=directory

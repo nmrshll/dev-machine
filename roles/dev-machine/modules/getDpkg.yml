@@ -1,7 +1,7 @@
 ---
 
-- name: Ensures Downloads/dpkg dir exists
-  file: path="/home/{{ ansible_env.USER }}/Downloads/dpkg/" state=directory
+- name: Ensures tmp/dpkg dir exists
+  file: path="/home/{{ ansible_env.USER }}/tmp/dpkg/" state=directory
 # - name: "Check if {{ item.name }} is installed"
 #   command: "dpkg-query -W {{ item.name }}"
 #   register: "{{ item.name }}_check_deb"
@@ -11,7 +11,8 @@
 - name: Download {{ item.name }}
   get_url: 
     url={{ item.url }}
-    dest="/home/{{ ansible_env.USER }}/Downloads/dpkg/{{ item.name }}.deb"
+    dest="/home/{{ ansible_env.USER }}/tmp/dpkg/{{ item.name }}.deb"
+  ignore_errors: true
   async: 45
   poll: 5
   # when: "{{ item.name }}_check_deb.rc == 1"
@@ -20,6 +21,6 @@
   become: true
   become_method: sudo
   ignore_errors: true
-  apt: deb="/home/{{ ansible_env.USER }}/Downloads/dpkg/{{ item.name }}.deb"
+  apt: deb="/home/{{ ansible_env.USER }}/tmp/dpkg/{{ item.name }}.deb"
   async: 45
   poll: 5
