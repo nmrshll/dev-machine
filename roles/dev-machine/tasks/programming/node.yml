@@ -8,19 +8,38 @@
     - npm
     - yarn
 
-- name: install node dependencies on ubuntu
-  tags: ubuntu
-  apt: name={{ item }} state=present
-  become: true
-  become_method: sudo
-  with_items:
-    - nodejs
-    - npm
+# - name: install node dependencies on ubuntu
+#   tags: ubuntu
+#   apt: name={{ item }} state=present
+#   become: true
+#   become_method: sudo
+#   with_items:
+#     - nodejs
+#     - npm
 
-- name: install nvm
+# - file: path="/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}" state=directory
+# - name: node+npm on ubuntu
+#   tags: ubuntu debug
+#   unarchive:
+#     src: https://nodejs.org/dist/v10.14.1/node-v10.14.1-linux-x64.tar.xz
+#     dest: /home/{{ ansible_env.USER }}/.local/share/nodejs
+#     remote_src: yes
+
+- include: "{{ role_path }}/modules/getExtract.yml"
   tags: ubuntu
-  shell: |
-    curl -o- -L https://yarnpkg.com/install.sh | bash
+  with_items:
+    - { name: 'nodejs', url: 'https://nodejs.org/dist/v10.14.1/node-v10.14.1-linux-x64.tar.xz' }
+- name: put node+npm on path
+  blockinfile:
+    path: ~/.shrc
+    create: yes
+    block: |
+      export PATH=$PATH:$HOME/.local/share/nodejs/node-v10.14.1-linux-x64/bin
+
+# - name: install nvm
+#   tags: ubuntu
+#   shell: |
+#     curl -o- -L https://yarnpkg.com/install.sh | bash
 
 
 # - name: install nvm
