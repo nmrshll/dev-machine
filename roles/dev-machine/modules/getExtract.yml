@@ -3,7 +3,7 @@
 - name: Ensures tmp/extract dir exists
   file: path="/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}" state=directory
 
-- name: Unarchive a file that needs to be downloaded (added in 2.0)
+- name: download and extract {{ item.name }}
   unarchive:
     src: "{{ item.url }}"
     dest: "/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}/"
