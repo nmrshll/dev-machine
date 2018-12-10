@@ -1,0 +1,20 @@
+---
+
+# - include: "{{ role_path }}/modules/getExtract.yml"
+#   tags: ubuntu
+#   with_items:
+#     - { name: 'holochain', url: 'https://github.com/holochain/holochain-rust/releases/download/holochain-cmd-v0.0.2/holochain-cmd-v0.0.2-x86_64-unknown-linux-gnu.tar.gz' }
+- name: put holochain on path
+  blockinfile:
+    path: ~/.shrc
+    create: yes
+    block: |
+      export PATH=$PATH:$HOME/.local/share/holochain-cmd-v0.0.2-x86_64-unknown-linux-gnu
+
+# - file: path="/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}" state=directory
+# - name: download and extract {{ item.name }}
+#   unarchive:
+#     src: "{{ item.url }}"
+#     dest: "/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}/"
+#     remote_src: yes
+  
