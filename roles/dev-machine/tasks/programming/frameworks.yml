@@ -8,6 +8,7 @@
   blockinfile:
     path: ~/.shrc
     create: yes
+    marker: "# ANSIBLE {mark} hc on PATH"
     block: |
       export PATH=$PATH:$HOME/.local/share/holochain-cmd-v0.0.2-x86_64-unknown-linux-gnu
 
