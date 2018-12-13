@@ -1,10 +1,10 @@
 ---
 
 - name: Ensures tmp/extract dir exists
-  file: path="/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}" state=directory
+  file: path="/home/{{ ansible_env.USER }}/.local/share/" state=directory
 
-- name: download and extract {{ item.name }}
+- name: download and extract {{ item.url }}
   unarchive:
     src: "{{ item.url }}"
-    dest: "/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}/"
+    dest: "/home/{{ ansible_env.USER }}/.local/share/"
     remote_src: yes
