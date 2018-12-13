@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Gitkraken
+Exec=/home/me/.local/share/gitkraken/gitkraken %U
+Icon=/home/me/.local/share/postman/Postman/app/resources/app/assets/icon.png
+Terminal=false
+Type=Application
+Categories=Development;

@@ -17,7 +17,6 @@
     - { name: 'franz', url: 'https://github.com/meetfranz/franz/releases/download/v5.0.0-beta.18/franz_5.0.0-beta.18_amd64.deb' }
     - { name: 'zoom', url: 'https://d11yldzmag5yn.cloudfront.net/prod/2.4.129780.0915/zoom_amd64.deb' }
 
-    
 
 
 # - name: install packages on ubuntu
@@ -68,4 +67,13 @@
   copy:
     src: Postman.desktop
     dest: ~/.local/share/applications/Postman.desktop
-  
+
+# - include: "{{ role_path }}/modules/getExtract.yml"
+#   tags: ubuntu
+#   with_items:
+#     - { name: 'gitkraken', url: 'https://release.gitkraken.com/linux/gitkraken-amd64.tar.gz' }
+# - name: Postman.desktop file
+#   tags: ubuntu
+#   copy:
+#     src: Gitkraken.desktop
+#     dest: ~/.local/share/applications/Gitkraken.desktop
