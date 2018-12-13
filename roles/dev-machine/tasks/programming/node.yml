@@ -30,11 +30,13 @@
   with_items:
     - { name: 'nodejs', url: 'https://nodejs.org/dist/v10.14.1/node-v10.14.1-linux-x64.tar.xz' }
 - name: put node+npm on path
+  tags: ubuntu
   blockinfile:
     path: ~/.shrc
     create: yes
+    marker: "# ANSIBLE {mark} node on PATH"
     block: |
-      export PATH=$PATH:$HOME/.local/share/nodejs/node-v10.14.1-linux-x64/bin
+      export PATH=$PATH:$HOME/.local/share/node-v10.14.1-linux-x64/bin
 
 # - name: install nvm
 #   tags: ubuntu
