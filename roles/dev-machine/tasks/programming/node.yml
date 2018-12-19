@@ -19,7 +19,7 @@
 
 # - file: path="/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}" state=directory
 # - name: node+npm on ubuntu
-#   tags: ubuntu debug
+#   tags: ubuntu
 #   unarchive:
 #     src: https://nodejs.org/dist/v10.14.1/node-v10.14.1-linux-x64.tar.xz
 #     dest: /home/{{ ansible_env.USER }}/.local/share/nodejs
