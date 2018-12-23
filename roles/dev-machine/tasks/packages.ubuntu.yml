@@ -16,6 +16,7 @@
     # - { name: 'gitkraken', url: 'https://release.gitkraken.com/linux/gitkraken-amd64.deb' }
     - { name: 'franz', url: 'https://github.com/meetfranz/franz/releases/download/v5.0.0-beta.18/franz_5.0.0-beta.18_amd64.deb' }
     - { name: 'zoom', url: 'https://d11yldzmag5yn.cloudfront.net/prod/2.4.129780.0915/zoom_amd64.deb' }
+    - { name: 'duplicati', url: 'https://updates.duplicati.com/beta/duplicati_2.0.4.5-1_all.deb' }
 
 
 
