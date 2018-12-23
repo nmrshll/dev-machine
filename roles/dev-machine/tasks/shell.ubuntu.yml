@@ -102,3 +102,12 @@
         mkcd ~/dev/go/src/experiments/${dir}
         code .
       }
+
+- name: env vars for ubuntu
+  tags: ubuntu,debug
+  blockinfile:
+    dest: ~/.shrc
+    create: yes
+    marker: "# ANSIBLE {mark} shell functions for ubuntu"
+    block: |
+      EDITOR=nano
