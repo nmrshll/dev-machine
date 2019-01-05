@@ -10,13 +10,13 @@
 #   apt: name=google-chrome state=present
 
 - include: "{{ role_path }}/modules/getDpkg.yml"
-  tags: ubuntu
-  with_items:
-    - { name: 'chrome', url: 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb' }
-    # - { name: 'gitkraken', url: 'https://release.gitkraken.com/linux/gitkraken-amd64.deb' }
-    - { name: 'franz', url: 'https://github.com/meetfranz/franz/releases/download/v5.0.0-beta.18/franz_5.0.0-beta.18_amd64.deb' }
-    - { name: 'zoom', url: 'https://d11yldzmag5yn.cloudfront.net/prod/2.4.129780.0915/zoom_amd64.deb' }
-    - { name: 'duplicati', url: 'https://updates.duplicati.com/beta/duplicati_2.0.4.5-1_all.deb' }
+	tags: ubuntu
+	with_items:
+	- { name: 'chrome', url: 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb' }
+	# - { name: 'gitkraken', url: 'https://release.gitkraken.com/linux/gitkraken-amd64.deb' }
+	- { name: 'franz', url: 'https://github.com/meetfranz/franz/releases/download/v5.0.0-beta.18/franz_5.0.0-beta.18_amd64.deb' }
+	- { name: 'zoom', url: 'https://d11yldzmag5yn.cloudfront.net/prod/2.4.129780.0915/zoom_amd64.deb' }
+	- { name: 'duplicati', url: 'https://updates.duplicati.com/beta/duplicati_2.0.4.5-1_all.deb' }
 
 
 
@@ -28,46 +28,46 @@
 #     # - lib32z1 lib32ncurses5 lib32stdc++6
 
 - name: install packages on ubuntu
-  tags: ubuntu
-  apt: name={{ item }} state=present
-  become: true
-  become_method: sudo
-  with_items:
-    - xclip
-    - gnome-shell-extensions
-    - gnome-tweak-tool
-    - supervisor
-    - deluge
-    - vlc
-    - qemu-kvm
-    - qemu
-    - virt-manager
-    - virt-viewer
-    # - libvirt-bin
-    - filezilla
-    - jq
-    - curl
-    - openjdk-8-jre-headless
-    - libgconf-2-4
+	tags: ubuntu
+	apt: name={{ item }} state=present
+	become: true
+	become_method: sudo
+	with_items:
+	- xclip
+	- gnome-shell-extensions
+	- gnome-tweak-tool
+	- supervisor
+	- deluge
+	- vlc
+	- qemu-kvm
+	- qemu
+	- virt-manager
+	- virt-viewer
+	# - libvirt-bin
+	- filezilla
+	- jq
+	- curl
+	- openjdk-8-jre-headless
+	- libgconf-2-4
 
 - apt_repository:
-    repo: ppa:daniruiz/flat-remix
-  become: true
-  become_method: sudo
+	repo: ppa:daniruiz/flat-remix
+	become: true
+	become_method: sudo
 - name: install flat-remix theme
-  become: true
-  become_method: sudo
-  apt: name=flat-remix-gnome state=present
+	become: true
+	become_method: sudo
+	apt: name=flat-remix-gnome state=present
 
 - include: "{{ role_path }}/modules/getExtract.yml"
-  tags: ubuntu
-  with_items:
-    - { name: 'postman', url: 'https://dl.pstmn.io/download/latest/linux64' }
+	tags: ubuntu
+	with_items:
+	- { name: 'postman', url: 'https://dl.pstmn.io/download/latest/linux64' }
 - name: Postman.desktop file
-  tags: ubuntu
-  copy:
-    src: Postman.desktop
-    dest: ~/.local/share/applications/Postman.desktop
+	tags: ubuntu
+	copy:
+	src: Postman.desktop
+	dest: ~/.local/share/applications/Postman.desktop
 
 # - include: "{{ role_path }}/modules/getExtract.yml"
 #   tags: ubuntu
@@ -78,3 +78,10 @@
 #   copy:
 #     src: Gitkraken.desktop
 #     dest: ~/.local/share/applications/Gitkraken.desktop
+
+- name: signal
+	tags: ubuntu
+	shell: |
+		curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
+		echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+		sudo apt update && sudo apt install signal-desktop
