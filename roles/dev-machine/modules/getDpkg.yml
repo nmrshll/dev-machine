@@ -13,8 +13,7 @@
     url={{ item.url }}
     dest="/home/{{ ansible_env.USER }}/tmp/dpkg/{{ item.name }}.deb"
   ignore_errors: true
-  async: 45
-  poll: 5
+  timeout: 30
   # when: "{{ item.name }}_check_deb.rc == 1"
 
 - name: Install {{ item.name }}
