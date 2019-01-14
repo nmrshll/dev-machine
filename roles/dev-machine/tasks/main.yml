@@ -11,6 +11,8 @@
 - import_tasks: programming/rust.yml
 - import_tasks: programming/frameworks.yml
 
+- import_tasks: backups.yml
+
 - import_tasks: settings.yml
 
 - import_tasks: shell.yml
