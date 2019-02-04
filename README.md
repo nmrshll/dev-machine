@@ -25,16 +25,17 @@ Using an ansible playbook makes this way cleaner, faster, and maintainable than 
 
 ### Software installed by this script
 
-- google chrome, firefox
+- firefox, chrome
 - visual studio code & plugins, settings
 - git & settings
 - shell functions & aliases
 - programming languages:
   - go
+  - rust
   - nodejs & npm, yarn
   - python
   - ruby
-- gitkraken
+- gitkraken, postman, sql GUIs
 - docker, docker-compose, kubernetes (kubectl, minikube)
 - virtualbox & vagrant
 
