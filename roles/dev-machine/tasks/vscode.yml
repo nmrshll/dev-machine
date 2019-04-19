@@ -1,6 +1,6 @@
 ---
 
-- name: Install Brew Cask packages
+- name: install Brew Cask packages
   tags: mac
   ignore_errors: yes
   homebrew_cask: name={{ item }} state=present
@@ -13,7 +13,7 @@
   with_items:
     - { name: 'vscode', url: 'https://az764295.vo.msecnd.net/stable/3aeede733d9a3098f7b4bdc1f66b63b0f48c1ef9/code_1.22.2-1523551015_amd64.deb' }
     
-- name: Install code packages
+- name: install code packages
   command: code --install-extension {{ item }}
   ignore_errors: yes
   register: vscode_result

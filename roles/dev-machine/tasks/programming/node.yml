@@ -1,12 +1,11 @@
 ---
 
-- name: Install packages from Homebrew
+- name: install brew packages
   tags: mac
-  homebrew: name={{ item }} state=present
-  with_items:
-    - node
-    - npm
-    - yarn
+  homebrew: 
+    state: present
+    name: [ node, npm, yarn, watchman ]
+
 
 # - name: install node dependencies on ubuntu
 #   tags: ubuntu

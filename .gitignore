@@ -1,3 +1,5 @@
 playbook.retry
 .DS_Store
 .history
+go.mod
+go.sum

@@ -1,18 +1,16 @@
 ---
 
-- name: Install packages from Homebrew
+- name: install git from brew
   tags: mac
-  homebrew: name={{ item }} state=present
-  with_items:
-    - git
+  homebrew: name=git state=present
 
-- name: Install packages from apt
+- name: install packages from apt
   tags: ubuntu
   apt: name={{ item }} state=present
   with_items:
     - git
 
-- name: Create Git configs
+- name: create git configs
   git_config: scope=global name={{ item.name }} value={{ item.value }}
   with_items:
     - { name: 'user.name', value: 'nmrshll' }

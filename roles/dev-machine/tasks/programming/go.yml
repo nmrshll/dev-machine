@@ -1,9 +1,7 @@
 ---
 
-- name: installing go from homebrew
-  homebrew: name={{ item }} state=present
-  with_items:
-    - go
+- name: install go from homebrew
+  homebrew: name=go state=present
   tags: mac
 
 # - name: install go on ubuntu

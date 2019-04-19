@@ -17,7 +17,7 @@
   poll: 5
   # when: "{{ item.name }}_check_deb.rc == 1"
 
-- name: Install {{ item.name }}
+- name: install {{ item.name }}
   become: true
   become_method: sudo
   ignore_errors: true
