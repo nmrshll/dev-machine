@@ -7,4 +7,52 @@
   become_method: sudo
   with_items:
     - python-pip
-    - ruby-full
+    # - ruby-full
+
+# - name: rvm
+#   tags: ubuntu
+#   shell: curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+# - name: make docker run without sudo
+#   tags: ubuntu
+#   become: true
+#   become_method: sudo
+#   shell: |
+#     groupadd -f gems
+#     usermod -aG gems {{ ansible_env.USER }}
+# - file:
+#     path: /var/lib/gems/
+#     state: touch
+#     group: :gems
+#     mode: "g+sw"
+# - name: run gem without sudo
+#   tags: ubuntu,debug
+#   become: true
+#   become_method: sudo
+#   shell: |
+#     chown :gems /var/lib/gems/
+#     chmod g+sw /var/lib/gems/
+
+# - name: run gem without sudo
+#   tags: ubuntu,debug
+#   shell: |
+#     groupadd -f gems
+#     usermod -aG gems {{ ansible_env.USER }}
+#   become: true
+#   become_method: sudo
+# - name: run gem without sudo
+#   tags: ubuntu,debug
+#   shell: |
+#     chown :gems /var/lib/gems/
+#     chmod g+sw /var/lib/gems/
+#   become: true
+#   become_method: sudo
+
+# - name: ruby
+#   tags: ubuntu,debug
+#   shell: |
+#     rvm install ruby
+# - name: ruby
+#   tags: ubuntu,debug
+#   shell: |
+#     gem install travis -v 1.8.8 --no-rdoc --no-ri

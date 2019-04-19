@@ -10,11 +10,10 @@
 
 - name: Download {{ item.name }}
   get_url: 
-    url={{ item.url }}
-    dest="/home/{{ ansible_env.USER }}/tmp/dpkg/{{ item.name }}.deb"
+    url: "{{ item.url }}"
+    dest: "/home/{{ ansible_env.USER }}/tmp/dpkg/{{ item.name }}.deb"
+    timeout: 30
   ignore_errors: true
-  async: 45
-  poll: 5
   # when: "{{ item.name }}_check_deb.rc == 1"
 
 - name: install {{ item.name }}

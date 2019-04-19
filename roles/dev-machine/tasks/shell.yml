@@ -65,7 +65,6 @@
       # webpic: "mogrify -resize 690\\> *.png"
 
 - name: shell functions
-  tags: debug
   blockinfile:
     dest: ~/.shrc
     create: yes
@@ -119,5 +118,5 @@
         stat -c '%a' $1
       }
       killport() {
-        kill -9 $(lsof -t -i:${1} -sTCP:LISTEN)
+        sudo kill -9 $(sudo lsof -t -i:${1} -sTCP:LISTEN)
       }

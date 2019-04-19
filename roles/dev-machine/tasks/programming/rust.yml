@@ -14,7 +14,6 @@
     curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 - name: build and run function onto profile
-  tags: debug
   blockinfile:
     dest: ~/.shrc
     create: yes

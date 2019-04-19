@@ -26,7 +26,6 @@
 #       # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
 
 - name: aliases into shrc
-  tags: debug
   blockinfile:
     dest: ~/.shrc
     create: yes
