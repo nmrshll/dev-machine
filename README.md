@@ -10,9 +10,7 @@ Using an ansible playbook makes this way cleaner, faster, and maintainable than 
 
 ### Quick start
 
-`git clone https://github.com/nmrshll/dev-machine.git && cd dev-machine && ./main.sh`
-
-**WARNING: This *will* install and modify packages on your machine. Read through the files in [`roles/dev-machine/tasks`](https://github.com/nmrshll/dev-machine/tree/master/roles/dev-machine/tasks) so you know what will happen.**
+`git clone git@github.com:nmrshll/dev-machine.git && cd dev-machine && ./main.sh`
 
 ##### Alternatively, download the folder as a .zip from github and run `./main.sh`
 
@@ -25,6 +23,8 @@ Using an ansible playbook makes this way cleaner, faster, and maintainable than 
 
 ### Software installed by this script
 
+**WARNING: This *will* install and modify packages on your machine. Read through the files in [`roles/dev-machine/tasks`](https://github.com/nmrshll/dev-machine/tree/master/roles/dev-machine/tasks) so you know what will happen.**
+
 - firefox, chrome
 - visual studio code & plugins, settings
 - git & settings
@@ -32,9 +32,10 @@ Using an ansible playbook makes this way cleaner, faster, and maintainable than 
 - programming languages:
   - go
   - rust
-  - nodejs & npm, yarn
+  - nodejs, npm, yarn, watchman
   - python
   - ruby
+  - android studio, react-native
 - gitkraken, postman, sql GUIs
 - docker, docker-compose, kubernetes (kubectl, minikube)
 - virtualbox & vagrant
