@@ -1,5 +1,6 @@
 ---
 
+- import_tasks: packages.yml
 - import_tasks: packages.mac.yml
   tags: mac
 - import_tasks: packages.ubuntu.yml
@@ -10,8 +11,10 @@
 - import_tasks: programming/other.yml
 - import_tasks: programming/rust.yml
 - import_tasks: programming/frameworks.yml
+- import_tasks: programming/mobile.yml
 
 - import_tasks: backups.yml
+  tags: ubuntu
 
 - import_tasks: settings.yml
 

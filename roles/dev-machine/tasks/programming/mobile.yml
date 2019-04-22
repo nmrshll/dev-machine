@@ -1,0 +1,62 @@
+---
+
+- name: install brew packages
+  tags: mac
+  homebrew: 
+    state: present
+    name: [ node, npm, yarn, watchman, gradle, maven ]
+
+- tags: mac
+  shell: npm install -g react-native-cli
+
+- shell: nix-env -iA nixos.android-studio
+  tags: ubuntu
+
+- name: install brew cask packages
+  tags: mac
+  ignore_errors: yes
+  homebrew_cask:
+    state: present
+    name: [
+      AdoptOpenJDK/openjdk/adoptopenjdk8,
+      intel-haxm,
+      android-sdk,
+      # android-ndk,
+      android-studio
+      android-platform-tools
+    ]
+
+- name: mobile dev env vars
+  blockinfile:
+    path: ~/.shrc
+    create: yes
+    marker: "# ANSIBLE {mark} mobile dev: env vars"
+    block: |
+      export MAVEN_HOME=/usr/local/opt/maven
+      export GRADLE_HOME=/usr/local/opt/gradle
+      export ANDROID_HOME=/usr/local/share/android-sdk
+      export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+      export ANDROID_NDK_HOME=/usr/local/share/android-ndk
+      export INTEL_HAXM_HOME=/usr/local/Caskroom/intel-haxm
+      export PATH=$PATH:$MAVEN_HOME/bin
+      export PATH=$PATH:$GRADLE_HOME/bin
+      export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+      export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+      export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+      export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+      export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools/28
+
+- shell: |
+    touch ~/.android/repositories.cfg
+    yes | $ANDROID_SDK_ROOT/tools/bin/sdkmanager --licenses
+    sdkmanager "tools" "platform-tools"
+    sdkmanager "platforms;android-27"
+    sdkmanager "build-tools;27.0.3"
+    sdkmanager "extras;android;m2repository"
+    sdkmanager "extras;google;m2repository"
+    sdkmanager "sources;android-27"
+    sdkmanager "platforms;android-28"
+    sdkmanager --install "system-images;android-28;google_apis_playstore;x86_64"
+    avdmanager create avd -n pixel2 -k "system-images;android-28;google_apis_playstore;x86_64" --device 17
+    # android update sdk --components=sys-img-x86-android-28
+    # android update sdk --no-ui

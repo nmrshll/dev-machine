@@ -1,0 +1,9 @@
+---
+
+- name: install nix
+  shell: curl https://nixos.org/nix/install | sh
+  args: 
+    warn: false
+    
+- shell: . /Users/me/.nix-profile/etc/profile.d/nix.sh
+  tags: mac

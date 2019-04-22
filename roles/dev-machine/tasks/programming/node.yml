@@ -4,7 +4,7 @@
   tags: mac
   homebrew: 
     state: present
-    name: [ node, npm, yarn, watchman ]
+    name: [ node, npm, yarn ]
 
 
 # - name: install node dependencies on ubuntu

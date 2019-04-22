@@ -19,26 +19,26 @@
 - name: install brew cask packages
   tags: mac
   ignore_errors: yes
-  homebrew_cask: name={{ item }} state=present
-  with_items:
-    - java
-    - alfred
-    - vagrant
-    - google-chrome
-    - firefox
-    - iterm2
-    - sequel-pro
-    - docker
-    - hyper
-    - etcher
-    - android-sdk
-    - visual-studio-code
-    - gitkraken
-    - virtualbox
-    - deluge
-    - karabiner-elements
-    - todoist
-    - postico
-    - postman
-    - minikube
+  homebrew_cask:
+    state: present
+    name: [
+      alfred,
+      # vagrant,
+      google-chrome,
+      firefox,
+      iterm2,
+      sequel-pro,
+      docker,
+      # hyper,
+      etcher,
+      visual-studio-code,
+      gitkraken,
+      virtualbox,
+      deluge,
+      karabiner-elements,
+      todoist,
+      postico,
+      postman,
+      minikube
+    ]
     

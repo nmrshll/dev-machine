@@ -69,6 +69,7 @@
   shell: update-alternatives --set editor /usr/bin/code
 
 - name: increase max inotify watch limit
+  tags: ubuntu
   become: true
   become_method: sudo
   blockinfile:
