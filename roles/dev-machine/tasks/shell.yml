@@ -16,16 +16,30 @@
     - "[[ -s \"$HOME/.shrc\" ]] && source \"$HOME/.shrc\""  
 
 # - name: common shell config
-#   lineinfile: dest=~/.shrc line='{{ item }}'
+#   lineinfile: 
+#     dest: '~/.shrc' 
+#     line: [
+#       export DATEDIR=`date "+%Y-%m/%d/%H:%M"`
+#     ]
+
 #   with_items:    
 #     # - "[[ ! -f $1 ]] && source $(brew --prefix)/share/antigen/antigen.zsh"
 #     # - "antigen bundle zsh-users/zsh-syntax-highlighting"
 #     # - "antigen apply"
 #     # - "export EDITOR=nano"
-#     - "export PATH=$PATH:~/.composer/vendor/bin"
+#     # - "export PATH=$PATH:~/.composer/vendor/bin"
 #     # - 'export PATH="$PATH:\$(yarn global bin)"'
 #     # - 'export PATH=$PATH:vendor/bin'
 #     # - 'COMPLETION_WAITING_DOTS="true"'
+
+- name: common shell config
+  blockinfile:
+    dest: ~/.shrc
+    create: yes
+    marker: "# ANSIBLE {mark} shell functions"
+    block: |
+      export DATEDIR=`date "+%Y-%m/%d/%H:%M"`
+
 
 - name: aliases into shrc
   blockinfile:
