@@ -8,6 +8,12 @@
   tags: mac
   osx_defaults: key=InitialKeyRepeat type=int value=15 state=present
 
+- name: osx defaults
+  tags: mac
+  shell: |
+    defaults write com.apple.dock show-recents -bool no
+    defaults write com.apple.dock recent-apps -array # intentionally empty
+
 - name: Increase keyboard key repeat speed
   tags: mac
   osx_defaults: key=KeyRepeat type=int value=2

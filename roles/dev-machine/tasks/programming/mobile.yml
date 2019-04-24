@@ -34,27 +34,27 @@
     block: |
       export MAVEN_HOME=/usr/local/opt/maven
       export GRADLE_HOME=/usr/local/opt/gradle
-      export ANDROID_HOME=/usr/local/share/android-sdk
-      export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+      # export ANDROID_HOME=/usr/local/share/android-sdk
       export ANDROID_NDK_HOME=/usr/local/share/android-ndk
       export INTEL_HAXM_HOME=/usr/local/Caskroom/intel-haxm
       export PATH=$PATH:$MAVEN_HOME/bin
       export PATH=$PATH:$GRADLE_HOME/bin
+      export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
       export PATH=$PATH:$ANDROID_SDK_ROOT/tools
       export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
       export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
       export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-      export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools/28
+      export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools/28.0.3
 
 - shell: |
     touch ~/.android/repositories.cfg
     yes | $ANDROID_SDK_ROOT/tools/bin/sdkmanager --licenses
     sdkmanager "tools" "platform-tools"
-    sdkmanager "platforms;android-27"
-    sdkmanager "build-tools;27.0.3"
+    sdkmanager "platforms;android-28"
+    sdkmanager "build-tools;28.0.3"
     sdkmanager "extras;android;m2repository"
     sdkmanager "extras;google;m2repository"
-    sdkmanager "sources;android-27"
+    sdkmanager "sources;android-28"
     sdkmanager "platforms;android-28"
     sdkmanager --install "system-images;android-28;google_apis_playstore;x86_64"
     avdmanager create avd -n pixel2 -k "system-images;android-28;google_apis_playstore;x86_64" --device 17
