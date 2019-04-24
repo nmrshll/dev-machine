@@ -38,7 +38,8 @@
     create: yes
     marker: "# ANSIBLE {mark} shell functions"
     block: |
-      export DATEDIR=`date "+%Y-%m/%d/%H:%M"`
+      export DATEDIR=`date "+%Y%m%d_%H%M"`
+      export SODIUM_USE_PKG_CONFIG=1
 
 
 - name: aliases into shrc
