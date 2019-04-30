@@ -3,12 +3,12 @@
 - name: update brew daily
   tags: mac
   cron: name="brew autoupdate" special_time="daily"
-        job="/usr/local/bin/brew update"
+        job="/usr/local/bin/brew update > /dev/null"
 
 - name: cleanup brew
   tags: mac
   cron: name="brew cleanup" special_time="monthly"
-        job="/usr/local/bin/brew cleanup"
+        job="/usr/local/bin/brew cleanup > /dev/null"
 
 - name: install brew packages
   tags: mac
