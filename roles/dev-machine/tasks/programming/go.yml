@@ -53,6 +53,8 @@
     GO111MODULE=off go get -u github.com/golang/lint/golint
     # GO111MODULE=off go get -u github.com/golang/dep/cmd/dep
     GO111MODULE=off go get -u github.com/sqs/goreturns
+    GO111MODULE=off go get -u github.com/rogpeppe/godef
+    GO111MODULE=off go get -u golang.org/x/tools/cmd/goimports
 
 # - name: set vscode gopath
 #   command: cat "$HOME/Library/Application Support/Code/User/settings.json" | jq .body.test2 = ["hello"] > "$HOME/Library/Application Support/Code/User/settings.json"
@@ -79,8 +81,8 @@
     # - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.vetOnSave"=true' }
     - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.lintTool"="golint"' }
     # - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.formatOnSave"=true' }
-    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.formatTool"="goreturns"' }
-    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.gopath"="$HOME/.cache/go:$HOME"' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.formatTool"="goimports"' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.gopath"="/Users/{{ ansible_env.USER }}/.cache/go:{{ ansible_env.USER }}"' }
 
     
 #   tags: ubuntu
