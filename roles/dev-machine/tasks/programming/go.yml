@@ -55,6 +55,8 @@
     GO111MODULE=off go get -u github.com/sqs/goreturns
     GO111MODULE=off go get -u github.com/rogpeppe/godef
     GO111MODULE=off go get -u golang.org/x/tools/cmd/goimports
+    GO111MODULE=off go get -u github.com/uudashr/gopkgs/cmd/gopkgs
+    GO111MODULE=off go get -u github.com/acroca/go-symbols
 
 # - name: set vscode gopath
 #   command: cat "$HOME/Library/Application Support/Code/User/settings.json" | jq .body.test2 = ["hello"] > "$HOME/Library/Application Support/Code/User/settings.json"
@@ -77,10 +79,10 @@
   include: "{{ role_path }}/modules/jqInsertIntoObject.yml"
   tags: mac
   with_items:
-    # - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.lintOnSave"=true' }
-    # - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.vetOnSave"=true' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.lintOnSave"=true' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.vetOnSave"=true' }
     - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.lintTool"="golint"' }
-    # - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.formatOnSave"=true' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.formatOnSave"=true' }
     - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.formatTool"="goimports"' }
     - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."go.gopath"="/Users/{{ ansible_env.USER }}/.cache/go:{{ ansible_env.USER }}"' }
 
