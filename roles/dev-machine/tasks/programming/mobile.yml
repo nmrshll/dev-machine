@@ -18,7 +18,7 @@
   homebrew_cask:
     state: present
     name: [
-      AdoptOpenJDK/openjdk/adoptopenjdk8,
+      adoptopenjdk/openjdk/adoptopenjdk8,
       intel-haxm,
       android-sdk,
       # android-ndk,
@@ -34,17 +34,19 @@
     block: |
       export MAVEN_HOME=/usr/local/opt/maven
       export GRADLE_HOME=/usr/local/opt/gradle
-      # export ANDROID_HOME=/usr/local/share/android-sdk
       export ANDROID_NDK_HOME=/usr/local/share/android-ndk
       export INTEL_HAXM_HOME=/usr/local/Caskroom/intel-haxm
       export PATH=$PATH:$MAVEN_HOME/bin
       export PATH=$PATH:$GRADLE_HOME/bin
+
       export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
       export PATH=$PATH:$ANDROID_SDK_ROOT/tools
       export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
       export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
       export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
       export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools/28.0.3
+
+      export PATH=$PATH:$HOME/.local/share/flutter/bin
 
 - shell: |
     touch ~/.android/repositories.cfg
@@ -60,3 +62,29 @@
     avdmanager create avd -n pixel2 -k "system-images;android-28;google_apis_playstore;x86_64" --device 17
     # android update sdk --components=sys-img-x86-android-28
     # android update sdk --no-ui
+
+
+- name: flutter mac
+  tags: mac
+  shell: |
+    git clone -b beta https://github.com/flutter/flutter.git $HOME/.local/share/flutter
+    flutter doctor
+    flutter doctor --android-licenses
+
+- name: ios dev toolchain
+  tags: mac
+  shell: |
+    xcode-select --switch /Applications/Xcode.app/Contents/Developer
+  become: true
+  become_method: sudo
+- name: ios dev toolchain, brew packages
+  tags: mac
+  homebrew: 
+    state: present
+    name: [ usbmuxd, libimobiledevice, ideviceinstaller, ios-deploy, cocoapods ]
+- name: ios dev toolchain, brew link
+  tags: mac
+  shell: |
+    brew unlink usbmuxd
+    brew link usbmuxd
+    pod setup

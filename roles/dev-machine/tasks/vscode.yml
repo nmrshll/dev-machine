@@ -30,6 +30,7 @@
     # - mubaidr.vuejs-extension-pack
     - ms-vsliveshare.vsliveshare
     - xyz.local-history
+    - Dart-Code.flutter
 
 - name: add user settings on mac
   tags: mac
