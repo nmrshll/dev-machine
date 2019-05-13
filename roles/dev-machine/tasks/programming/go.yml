@@ -49,14 +49,22 @@
 - name: go get some packages
   ignore_errors: yes
   shell: |
-    GO111MODULE=off go get -u golang.org/x/tools/cmd/godoc
-    GO111MODULE=off go get -u github.com/golang/lint/golint
-    # GO111MODULE=off go get -u github.com/golang/dep/cmd/dep
-    GO111MODULE=off go get -u github.com/sqs/goreturns
-    GO111MODULE=off go get -u github.com/rogpeppe/godef
-    GO111MODULE=off go get -u golang.org/x/tools/cmd/goimports
-    GO111MODULE=off go get -u github.com/uudashr/gopkgs/cmd/gopkgs
-    GO111MODULE=off go get -u github.com/acroca/go-symbols
+    # GO111MODULE=off go get -u golang.org/x/tools/cmd/godoc
+    # GO111MODULE=off go get -u github.com/golang/lint/golint
+    # # GO111MODULE=off go get -u github.com/golang/dep/cmd/dep
+    # GO111MODULE=off go get -u github.com/sqs/goreturns
+    # GO111MODULE=off go get -u github.com/rogpeppe/godef
+    # GO111MODULE=off go get -u golang.org/x/tools/cmd/goimports
+    # GO111MODULE=off go get -u github.com/uudashr/gopkgs/cmd/gopkgs
+    # GO111MODULE=off go get -u github.com/acroca/go-symbols
+    # go get -u golang.org/x/tools/cmd/godoc
+    # go get -u github.com/golang/lint/golint
+    # go get -u github.com/sqs/goreturns
+    # go get -u github.com/rogpeppe/godef
+    # go get -u golang.org/x/tools/cmd/goimports
+    # go get -u github.com/uudashr/gopkgs/cmd/gopkgs
+    # go get -u github.com/acroca/go-symbols
+    # go get -u github.com/stamblerre/gocode
 
 # - name: set vscode gopath
 #   command: cat "$HOME/Library/Application Support/Code/User/settings.json" | jq .body.test2 = ["hello"] > "$HOME/Library/Application Support/Code/User/settings.json"
