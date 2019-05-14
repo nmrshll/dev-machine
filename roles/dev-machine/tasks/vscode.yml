@@ -1,4 +1,5 @@
 ---
+
 - name: install Brew Cask packages
   tags: mac
   ignore_errors: yes
@@ -10,11 +11,8 @@
   tags: ubuntu
   ignore_errors: yes
   with_items:
-    - {
-        name: "vscode",
-        url: "https://az764295.vo.msecnd.net/stable/3aeede733d9a3098f7b4bdc1f66b63b0f48c1ef9/code_1.22.2-1523551015_amd64.deb",
-      }
-
+    - { name: 'vscode', url: 'https://az764295.vo.msecnd.net/stable/3aeede733d9a3098f7b4bdc1f66b63b0f48c1ef9/code_1.22.2-1523551015_amd64.deb' }
+    
 - name: install code packages
   command: code --install-extension {{ item }}
   ignore_errors: yes
@@ -39,73 +37,32 @@
   tags: mac
   include: "{{ role_path }}/modules/jqInsertIntoObject.yml"
   with_items:
-    - {
-        filePath: '$HOME/Library/Application\ Support/Code/User/settings.json',
-        jqCommand: '."[javascript]"={"editor.formatOnSave": false}',
-      }
-    - {
-        filePath: '$HOME/Library/Application\ Support/Code/User/settings.json',
-        jqCommand: '."eslint.autoFixOnSave"=true',
-      }
-    - {
-        filePath: '$HOME/Library/Application\ Support/Code/User/settings.json',
-        jqCommand: '."eslint.alwaysShowStatus"=true',
-      }
-    - {
-        filePath: '$HOME/Library/Application\ Support/Code/User/settings.json',
-        jqCommand: '."prettier.eslintIntegration"=true',
-      }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."[javascript]"={"editor.formatOnSave": false}' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."eslint.autoFixOnSave"=true' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."eslint.alwaysShowStatus"=true' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."prettier.eslintIntegration"=true' }
+    - { filePath: '$HOME/Library/Application\ Support/Code/User/settings.json', jqCommand: '."[yaml]"={"editor.formatOnSave": false}' }
 
 - name: add user settings on ubuntu
   tags: ubuntu
   include: "{{ role_path }}/modules/jqInsertIntoObject.yml"
   with_items:
-    - {
-        filePath: "$HOME/.config/Code/User/settings.json",
-        jqCommand: '."editor.formatOnSave"=true',
-      }
-    - {
-        filePath: "$HOME/.config/Code/User/settings.json",
-        jqCommand: '."[javascript]"={"editor.formatOnSave": false}',
-      }
-    - {
-        filePath: "$HOME/.config/Code/User/settings.json",
-        jqCommand: '."eslint.autoFixOnSave"=true',
-      }
-    - {
-        filePath: "$HOME/.config/Code/User/settings.json",
-        jqCommand: '."eslint.alwaysShowStatus"=true',
-      }
-    - {
-        filePath: "$HOME/.config/Code/User/settings.json",
-        jqCommand: '."go.gopath"="/home/{{ ansible_env.USER }}/.cache/go:/home/{{ ansible_env.USER }}"',
-      }
-    - {
-        filePath: "$HOME/.config/Code/User/settings.json",
-        jqCommand: '."go.formatTool"="goimports"',
-      }
-    - {
-        filePath: "$HOME/.config/Code/User/settings.json",
-        jqCommand: '."files.watcherExclude"={"**/.git/objects/**":true,"**/.git/subtree-cache/**":true,"**/node_modules/*/**":true,"**/.history/**":true}',
-      }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."editor.formatOnSave"=true' }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."[javascript]"={"editor.formatOnSave": false}' }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."eslint.autoFixOnSave"=true' }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."eslint.alwaysShowStatus"=true' }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."go.gopath"="/home/{{ ansible_env.USER }}/.cache/go:/home/{{ ansible_env.USER }}"' }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."go.formatTool"="goimports"' }
+    - { filePath: '$HOME/.config/Code/User/settings.json', jqCommand: '."files.watcherExclude"={"**/.git/objects/**":true,"**/.git/subtree-cache/**":true,"**/node_modules/*/**":true,"**/.history/**":true}' }
 
 - name: set keyboard shortcuts on ubuntu
   tags: ubuntu
   include: "{{ role_path }}/modules/jqInsertIntoArray.yml"
   with_items:
-    - {
-        filePath: "$HOME/.config/Code/User/keybindings.json",
-        jqCommand: '. += [{ "key": "ctrl+alt+o", "command": "workbench.action.files.openFile" }]',
-      }
-    - {
-        filePath: "$HOME/.config/Code/User/keybindings.json",
-        jqCommand: '. += [{ "key": "ctrl+o", "command": "workbench.action.files.openFolder" }]',
-      }
-    - {
-        filePath: "$HOME/.config/Code/User/keybindings.json",
-        jqCommand: '. += [{ "key": "ctrl+[Backquote]", "command": "workbench.action.terminal.toggleTerminal" }]',
-      }
-
+    - { filePath: '$HOME/.config/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+alt+o", "command": "workbench.action.files.openFile" }]' }
+    - { filePath: '$HOME/.config/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+o", "command": "workbench.action.files.openFolder" }]' }
+    - { filePath: '$HOME/.config/Code/User/keybindings.json', jqCommand: '. += [{ "key": "ctrl+[Backquote]", "command": "workbench.action.terminal.toggleTerminal" }]' }
+    
 - name: set as default program for text files
   tags: ubuntu
   shell: xdg-mime default code.desktop text/plain
@@ -124,4 +81,4 @@
     create: yes
     marker: "# {mark} inotify limit (for vscode)"
     block: |
-      fs.inotify.max_user_watches=524288
+        fs.inotify.max_user_watches=524288
