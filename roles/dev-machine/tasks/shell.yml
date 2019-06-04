@@ -83,6 +83,7 @@
       echopath: 'echo $PATH | tr -s ":" "\n"'
       myip: "curl -sSL http://ipecho.net/plain | xargs echo"
       # webpic: "mogrify -resize 690\\> *.png"
+      shrc: "source ~/.shrc"
 
 - name: shell functions
   blockinfile:
