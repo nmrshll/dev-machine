@@ -5,6 +5,7 @@
 #   with_items:
 #     - { name: 'holochain', url: 'https://github.com/holochain/holochain-rust/releases/download/holochain-cmd-v0.0.2/holochain-cmd-v0.0.2-x86_64-unknown-linux-gnu.tar.gz' }
 - name: put holochain on path
+  tags: ubuntu
   blockinfile:
     path: ~/.shrc
     create: yes
@@ -12,10 +13,27 @@
     block: |
       export PATH=$PATH:$HOME/.local/share/holochain-cmd-v0.0.2-x86_64-unknown-linux-gnu
 
+- name: put holochain on path
+  tags: mac
+  blockinfile:
+    path: ~/.shrc
+    create: yes
+    marker: "# ANSIBLE {mark} hc on PATH"
+    block: |
+      export PATH=$PATH:$HOME/.local/share/holochain-v0.0.17-alpha2
+
 # - file: path="/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}" state=directory
 # - name: download and extract {{ item.name }}
 #   unarchive:
-#     src: "{{ item.url }}"
-#     dest: "/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}/"
-#     remote_src: yes
-  
+  #     src: "{{ item.url }}"
+  #     dest: "/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}/"
+  #     remote_src: yes
+    
+# - include: "{{ role_path }}/modules/getExtract.yml"
+#   tags: mac,debug
+#   with_items:
+#     - { name: 'holochain', url: 'https://github.com/holochain/holochain-rust/releases/download/v0.0.17-alpha2/cli-v0.0.17-alpha2-x86_64-apple-darwin.tar.gz' }
+
+# - tags: mac,debug
+#   shell: |
+    
