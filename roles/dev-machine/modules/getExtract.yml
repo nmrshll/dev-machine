@@ -1,10 +1,34 @@
 ---
 
 - name: Ensures tmp/extract dir exists
+  tags: ubuntu
   file: path="/home/{{ ansible_env.USER }}/.local/share/" state=directory
 
 - name: download and extract {{ item.url }}
+  tags: ubuntu
   unarchive:
     src: "{{ item.url }}"
     dest: "/home/{{ ansible_env.USER }}/.local/share/"
     remote_src: yes
+
+
+- name: Ensures tmp/extract dir exists
+  tags: mac,debug
+  file: path="/Users/{{ ansible_env.USER }}/.local/share/" state=directory
+
+- name: Download {{ item.name }}
+  tags: mac,debug
+  get_url: 
+    url: "{{ item.url }}"
+    dest: "/Users/{{ ansible_env.USER }}/tmp/dpkg/{{ item.name }}"
+    timeout: 30
+  ignore_errors: true
+
+- name: download and extract {{ item.url }}
+  tags: mac,debug
+  shell: |
+    extract /Users/{{ ansible_env.USER }}/tmp/dpkg/{{ item.name }} /Users/{{ ansible_env.USER }}/.local/share/{{ item.name }}
+  # unarchive:
+  #   src: "{{ item.url }}"
+  #   dest: "/Users/{{ ansible_env.USER }}/.local/share/"
+  #   remote_src: yes
