@@ -26,7 +26,7 @@
 #     group: :gems
 #     mode: "g+sw"
 # - name: run gem without sudo
-#   tags: ubuntu,debug
+#   tags: ubuntu
 #   become: true
 #   become_method: sudo
 #   shell: |
@@ -34,14 +34,14 @@
 #     chmod g+sw /var/lib/gems/
 
 # - name: run gem without sudo
-#   tags: ubuntu,debug
+#   tags: ubuntu
 #   shell: |
 #     groupadd -f gems
 #     usermod -aG gems {{ ansible_env.USER }}
 #   become: true
 #   become_method: sudo
 # - name: run gem without sudo
-#   tags: ubuntu,debug
+#   tags: ubuntu
 #   shell: |
 #     chown :gems /var/lib/gems/
 #     chmod g+sw /var/lib/gems/
@@ -49,10 +49,10 @@
 #   become_method: sudo
 
 # - name: ruby
-#   tags: ubuntu,debug
+#   tags: ubuntu
 #   shell: |
 #     rvm install ruby
 # - name: ruby
-#   tags: ubuntu,debug
+#   tags: ubuntu
 #   shell: |
 #     gem install travis -v 1.8.8 --no-rdoc --no-ri

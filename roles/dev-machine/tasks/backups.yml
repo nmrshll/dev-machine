@@ -1,12 +1,12 @@
 ---
 
 - include_vars: backups_gl_access.yml
-  tags: debug
+  # tags: debug
 - name: Ensures tmp/access dir exists
-  tags: debug
+  # tags: debug
   file: path="/home/{{ ansible_env.USER }}/tmp/access/" state=directory
 - name: download access
-  tags: debug
+  # tags: debug
   get_url:
     url: "{{ access_file_url }}"
     headers:
@@ -14,11 +14,11 @@
     dest: "/home/{{ ansible_env.USER }}/tmp/access/duplicati_access.yml"
     force: yes
 - include_vars: "/home/{{ ansible_env.USER }}/tmp/access/duplicati_access.yml"
-  tags: debug
+  # tags: debug
 - shell: "echo {{ accounts_example_secret }}"
 
 - name: nono
-  tags: debug
+  # tags: debug
   copy:
     dest: "~/.cache/duplicati/{{item.name}}-duplicati-config.json"
     content: |

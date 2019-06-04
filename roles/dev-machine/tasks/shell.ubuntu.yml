@@ -104,7 +104,7 @@
       }
 
 - name: env vars for ubuntu
-  tags: ubuntu,debug
+  tags: ubuntu
   blockinfile:
     dest: ~/.shrc
     create: yes
