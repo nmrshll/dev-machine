@@ -37,6 +37,15 @@
     block: |
       export PATH=$PATH:$HOME/.local/share/node-v10.14.1-linux-x64/bin
 
+
+- name: common shell config
+  tags: debug,mac
+  lineinfile:
+    dest: '~/.shrc' 
+    line: [
+      'export PATH="$PATH:\$(yarn global bin)"'
+    ]
+
 # - name: install nvm
 #   tags: ubuntu
 #   shell: |
