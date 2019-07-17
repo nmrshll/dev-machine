@@ -20,7 +20,7 @@
     create: yes
     marker: "# ANSIBLE {mark} hc on PATH"
     block: |
-      export PATH=$PATH:$HOME/.local/share/cli-0.0.24-alpha2-x86_64-apple-darwin
+      export PATH=$PATH:$HOME/.local/share/cli-v0.0.23-alpha1-x86_64-apple-darwin
 
 # - file: path="/home/{{ ansible_env.USER }}/.local/share/{{ item.name }}" state=directory
 # - name: download and extract {{ item.name }}
