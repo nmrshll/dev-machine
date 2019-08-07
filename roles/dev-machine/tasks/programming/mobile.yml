@@ -21,12 +21,13 @@
       adoptopenjdk/openjdk/adoptopenjdk8,
       intel-haxm,
       android-sdk,
-      # android-ndk,
+      android-ndk,
       android-studio
       android-platform-tools
     ]
 
-- name: mobile dev env vars
+- name: mobile dev env vars (mac?)
+  tags: mac
   blockinfile:
     path: ~/.shrc
     create: yes
@@ -39,7 +40,7 @@
       export PATH=$PATH:$MAVEN_HOME/bin
       export PATH=$PATH:$GRADLE_HOME/bin
 
-      export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+      export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk # also called ANDROID_HOME
       export PATH=$PATH:$ANDROID_SDK_ROOT/tools
       export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
       export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
@@ -88,3 +89,31 @@
     brew unlink usbmuxd
     brew link usbmuxd
     pod setup
+
+    # make_standalone_toolchain.py is apparently deprecated
+# - name: rust mobile (mac?) 
+#   tags: mac
+#   shell: |
+#     mkdir ~/.NDK
+#     ${ANDROID_NDK_HOME}/build/tools/make_standalone_toolchain.py --api 26 --arch arm64 --install-dir ~/.NDK/arm64;
+#     ${ANDROID_NDK_HOME}/build/tools/make_standalone_toolchain.py --api 26 --arch arm --install-dir ~/.NDK/arm;
+#     ${ANDROID_NDK_HOME}/build/tools/make_standalone_toolchain.py --api 26 --arch x86 --install-dir ~/.NDK/x86;
+
+- name: rust mobile build toolchains (mac?)
+  tags: mac
+  blockinfile:
+    path: ~/.cargo/config
+    create: yes
+    marker: "# ANSIBLE {mark} rust mobile build toolchains"
+    block: |
+      [target.aarch64-linux-android]
+      ar = ".NDK/arm64/bin/aarch64-linux-android-ar" ### NOPE CHANGE
+      linker = ".NDK/arm64/bin/aarch64-linux-android-clang"
+
+      [target.armv7-linux-androideabi]
+      ar = ".NDK/arm/bin/arm-linux-androideabi-ar"
+      linker = ".NDK/arm/bin/arm-linux-androideabi-clang"
+
+      [target.i686-linux-android]
+      ar = ".NDK/x86/bin/i686-linux-android-ar"
+      linker = ".NDK/x86/bin/i686-linux-android-clang"
