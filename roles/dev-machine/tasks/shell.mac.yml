@@ -60,6 +60,9 @@
           fi
         fi
       }
+      rmDSStore () {
+        find . -name '.DS_Store' -type f -delete
+      }
 
 - name: mac aliases
   blockinfile:
