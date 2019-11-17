@@ -14,6 +14,13 @@
     - docker
     - virtualbox
 
+- name: KUBECONFIG
+  blockinfile:
+    path: ~/.shrc
+    create: yes
+    block: |
+      export KUBECONFIG=$HOME/.config/.kube/okteto-kube.config
+
 # - name: Create system aliases
 #   lineinfile: dest=~/.shrc line='alias {{ item.key }}=\"{{ item.value }}\"' insertafter='# aliases'
 #   with_dict: "{{aliases}}"
