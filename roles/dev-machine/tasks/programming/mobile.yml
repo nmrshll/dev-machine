@@ -35,12 +35,14 @@
     block: |
       export MAVEN_HOME=/usr/local/opt/maven
       export GRADLE_HOME=/usr/local/opt/gradle
-      export ANDROID_NDK_HOME=/usr/local/share/android-ndk
+      export ANDROID_NDK_HOME=/usr/local/share/android-ndk # also called NDK_HOME
+      export NDK_HOME=${ANDROID_NDK_HOME}
       export INTEL_HAXM_HOME=/usr/local/Caskroom/intel-haxm
       export PATH=$PATH:$MAVEN_HOME/bin
       export PATH=$PATH:$GRADLE_HOME/bin
 
       export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk # also called ANDROID_HOME
+      export ANDROID_HOME=${ANDROID_SDK_ROOT}
       export PATH=$PATH:$ANDROID_SDK_ROOT/tools
       export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
       export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
