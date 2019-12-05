@@ -41,10 +41,14 @@
       export DATEDIR=`date "+%Y%m%d_%H%M"`
       export SODIUM_USE_PKG_CONFIG=1
       
+      alias shrc='source ~/.shrc'
+      alias dm='code ~/dev-machine; code ~/.shrc'
       alias cgh='cd ~/src/github.com/nmrshll'
       alias cgl='cd ~/src/gitlab.com/nmrshll'
       alias cghk='cd ~/src/github.com/nmrshll-katas'
-      alias dm='code ~/dev-machine; code ~/.shrc'
+      alias cghcontrib='cd ~/src/github.com/nmrshll-contrib'
+      alias cwp='cd ~/src/gitlab.com/nmrshll-weekend-projects'
+      alias chw='cd ~/src/gitlab.com/nmrshll-helloworlds'
 
 
 - name: aliases into shrc
