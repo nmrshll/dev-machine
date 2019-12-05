@@ -13,7 +13,7 @@
   shell: |
     defaults write com.apple.dock show-recents -bool no
     defaults write com.apple.dock recent-apps -array # intentionally empty
-    defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+    defaults write com.apple.desktopservices DSDontWriteNetworkStores -string true
 
 - name: Increase keyboard key repeat speed
   tags: mac
