@@ -7,3 +7,9 @@
     
 - shell: . /Users/me/.nix-profile/etc/profile.d/nix.sh
   tags: mac
+
+- name: add nix to path
+  blockinfile:
+    path: ~/.shrc
+    create: yes
+    block: source /Users/me/.nix-profile/etc/profile.d/nix.sh
