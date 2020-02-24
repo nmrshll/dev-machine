@@ -75,4 +75,4 @@
   vars:
     aliases:
       copy_ssh: "cat ~/.ssh/id_rsa.pub | pbcopy"
-      chrome: "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+      chrome: "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
