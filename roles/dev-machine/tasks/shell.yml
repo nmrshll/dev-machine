@@ -49,6 +49,7 @@
       alias cghcontrib='cd ~/src/github.com/nmrshll-contrib'
       alias cwp='cd ~/src/gitlab.com/nmrshll-weekend-projects'
       alias chw='cd ~/src/gitlab.com/nmrshll-helloworlds'
+      alias cghhw='cd ~/src/github.com/nmrshll-helloworlds'
 
 
 - name: aliases into shrc
