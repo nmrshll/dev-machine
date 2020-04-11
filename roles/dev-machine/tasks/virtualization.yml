@@ -19,7 +19,7 @@
     path: ~/.shrc
     create: yes
     block: |
-      export KUBECONFIG=$HOME/.config/.kube/okteto-kube.config
+      export KUBECONFIG=$HOME/.config/.kube/kube.config
 
 # - name: Create system aliases
 #   lineinfile: dest=~/.shrc line='alias {{ item.key }}=\"{{ item.value }}\"' insertafter='# aliases'
@@ -47,6 +47,7 @@
       docker_kill_all: 'docker update --restart=no \$(docker ps -a -q); docker kill -v -f \$(docker ps -a -q); docker rm -v -f \$(docker ps -a -q)'
       docker_clean_volumes: 'docker volume rm \$(docker volume ls -qf dangling=true)'
       docker_clean: 'docker_clean_images; docker_clean_containers; docker_clean_volumes'
+      k: 'kubectl'
       # time_estimate: 'docker run --rm -v \$(pwd):/code khor/git-hours'
 
 - include: "{{ role_path }}/modules/getDpkg.yml"
