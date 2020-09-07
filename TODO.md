@@ -1,0 +1,1 @@
+- add in global .prettierrc: "svelteSortOrder": "markup-scripts-styles"
