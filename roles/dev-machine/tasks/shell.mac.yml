@@ -63,6 +63,11 @@
       rmDSStore () {
         find . -name '.DS_Store' -type f -delete
       }
+      freeup_space () {
+        swp ~/src --force
+        docker system prune -af
+        rmDSStore
+      }
 
 - name: mac aliases
   blockinfile:
