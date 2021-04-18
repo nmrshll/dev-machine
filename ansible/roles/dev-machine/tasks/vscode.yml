@@ -82,3 +82,9 @@
     marker: "# {mark} inotify limit (for vscode)"
     block: |
         fs.inotify.max_user_watches=524288
+
+
+# TODO in vs_code settings
+# "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+# "rust-analyzer.procMacro.enable": true,
+# "rust-analyzer.diagnostics.disabled": ["unresolved-import"]
