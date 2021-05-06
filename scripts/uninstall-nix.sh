@@ -1,4 +1,6 @@
 #!/usr/bin/env bash -xe
+#!/bin/bash
+set -euxo pipefail
 
 rmLineInFile() {
     if [[ ! -f $2 ]]; then echo "ERR: $\2 expects path to file !" && return; fi
@@ -19,3 +21,7 @@ rmLineInFile "nix" /etc/synthetic.conf
 
 # 4. delete all nix data
 sudo rm -rf /etc/nix /nix /var/root/.nix-profile /var/root/.nix-defexpr /var/root/.nix-channels /Users/me/.nix-profile /Users/me/.nix-defexpr /Users/me/.nix-channels
+
+
+# Alternatively
+# sudo chown -R me /nix
